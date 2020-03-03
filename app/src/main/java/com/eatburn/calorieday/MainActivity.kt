@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         if (mAuth!!.currentUser != null) {
             Log.d(TAG, "Continue with: " + mAuth!!.currentUser!!.email)
-            startActivity(Intent(this@MainActivity, ResultActivity::class.java))
+            startActivity(Intent(this@MainActivity, ProfileActivity::class.java))
             finish()
         }
 

@@ -8,19 +8,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_result.*
+import kotlinx.android.synthetic.main.activity_profile.*
 
-class ResultActivity : AppCompatActivity() {
+class ProfileActivity : AppCompatActivity() {
 
     var mAuth: FirebaseAuth? = null
     var mAuthListener: FirebaseAuth.AuthStateListener? = null
     lateinit var mDatabase: DatabaseReference
-    private val TAG:String = "Result Activity"
+    private val TAG:String = "Profile Activity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result)
-
+        setContentView(R.layout.activity_profile)
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
 
@@ -32,7 +31,7 @@ class ResultActivity : AppCompatActivity() {
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
             val users = firebaseAuth.currentUser
             if (users == null) {
-                startActivity(Intent(this@ResultActivity, LoginActivity::class.java))
+                startActivity(Intent(this@ProfileActivity, LoginActivity::class.java))
                 finish()
             }
         }
@@ -41,7 +40,7 @@ class ResultActivity : AppCompatActivity() {
             override fun onCancelled(databaseError: DatabaseError) {
                 result_signOutBtn.setOnClickListener {
                     mAuth!!.signOut()
-                    startActivity(Intent(this@ResultActivity, MainActivity::class.java))
+                    startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
                     finish()
                 }
             }
@@ -58,7 +57,7 @@ class ResultActivity : AppCompatActivity() {
             mAuth!!.signOut()
             Toast.makeText(this, "Signed out!", Toast.LENGTH_SHORT).show()
             Log.d(TAG, "Signed out!")
-            startActivity(Intent(this@ResultActivity, MainActivity::class.java))
+            startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
             finish()
         }
     }

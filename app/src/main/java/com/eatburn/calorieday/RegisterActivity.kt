@@ -24,7 +24,7 @@ class RegisterActivity : AppCompatActivity() {
         mDatabase = FirebaseDatabase.getInstance().reference
 
         if (mAuth!!.currentUser != null) {
-            startActivity(Intent(this@RegisterActivity, ResultActivity::class.java))
+            startActivity(Intent(this@RegisterActivity, ProfileActivity::class.java))
             finish()
         }
 

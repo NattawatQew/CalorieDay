@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         if (mAuth!!.currentUser != null) {
-            startActivity(Intent(this@LoginActivity, ResultActivity::class.java))
+            startActivity(Intent(this@LoginActivity, ProfileActivity::class.java))
             finish()
         }
 
@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Sign in successfully!", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "Sign in successfully!")
-                    startActivity(Intent(this@LoginActivity, ResultActivity::class.java))
+                    startActivity(Intent(this@LoginActivity, ProfileActivity::class.java))
                     finish()
                 }
             }

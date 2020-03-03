@@ -23,11 +23,11 @@ class GenderActivity : AppCompatActivity() {
         val uid = user!!.uid
         male_btn.setOnClickListener{
             mDatabase.child(uid).child("UserInfo").child("Gender").setValue("Male")
-            startActivity(Intent(this@GenderActivity, ResultActivity::class.java))
+            startActivity(Intent(this@GenderActivity, ProfilePicActivity::class.java))
         }
         female_btn.setOnClickListener{
             mDatabase.child(uid).child("UserInfo").child("Gender").setValue("Female")
-            startActivity(Intent(this@GenderActivity, ResultActivity::class.java))
+            startActivity(Intent(this@GenderActivity, ProfilePicActivity::class.java))
         }
     }
 

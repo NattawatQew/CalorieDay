@@ -7,7 +7,7 @@
     <string name="email_address">Email Address</string>
     <string name="sign_in">Sign In</string>
     <string name="password">Password</string>
-    <string name="register_continueBtn">Continue</string>
+    <string name="continueBtn">Continue</string>
     <string name="signup">Sign Up</string>
     <string name="confirm_password">Confirm-Password</string>
     <string name="welcome_photo">main photo</string>

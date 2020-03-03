@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ProfilePicActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.Loading">
@@ -22,7 +23,7 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ResultActivity" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".GenderActivity" />
     </application>
 
