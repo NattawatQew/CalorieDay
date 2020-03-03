@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">CalorieDay</string>
+    <string name="signin">Sign In</string>
+    <string name="already">Already have an account?</string>
+    <string name="get_started">Get Started</string>
+    <string name="welcome">Welcome to Calorie Day</string>
+    <string name="email_address">Email Address</string>
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="register_continueBtn">Continue</string>
+    <string name="signup">Sign Up</string>
+    <string name="confirm_password">Confirm-Password</string>
+    <string name="welcome_photo">main photo</string>
+    <string name="email_address_regis">Email address</string>
+    <string name="username">Username</string>
+    <string name="password_regis">password_regis</string>
+    <string name="signout">Sign Out</string>
+    <string name="sign_out">Sign out</string>
+</resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "89380436172",
+    "firebase_url": "https://calorie-day.firebaseio.com",
+    "project_id": "calorie-day",
+    "storage_bucket": "calorie-day.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89380436172:android:fd629bf160f380f1356a69",
+        "android_client_info": {
+          "package_name": "com.eatburn.calorieday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89380436172-fgnj62fplg3uji12m2iltfi35i8q9d2b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eatburn.calorieday",
+            "certificate_hash": "abdec0eacd0c7587bf3c48e43588f823540fabaa"
+          }
+        },
+        {
+          "client_id": "89380436172-tf54sq3837o7f078lj7kjp6ete8m7ejf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPeaaMAOkkOkowCkiieRcZSkzZ13He1DU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89380436172-tf54sq3837o7f078lj7kjp6ete8m7ejf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

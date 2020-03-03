@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context=".ResultActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="25dp">
+        <TextView
+            android:id="@+id/result_nameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User name: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/result_nameData"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Username" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="25dp">
+        <TextView
+            android:id="@+id/result_emailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/result_emailData"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="email" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="25dp">
+        <TextView
+            android:id="@+id/result_uidLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UID: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/result_uidData"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="uid" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/result_signOutBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/colorPurple"
+        android:text="@string/sign_out" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
