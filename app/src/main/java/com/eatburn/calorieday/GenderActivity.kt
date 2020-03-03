@@ -2,6 +2,7 @@ package com.eatburn.calorieday
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -28,5 +29,10 @@ class GenderActivity : AppCompatActivity() {
             mDatabase.child(uid).child("UserInfo").child("Gender").setValue("Female")
             startActivity(Intent(this@GenderActivity, ResultActivity::class.java))
         }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) { moveTaskToBack(true) }
+        return super.onKeyDown(keyCode, event)
     }
 }

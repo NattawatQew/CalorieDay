@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_result.*
 
 class ResultActivity : AppCompatActivity() {
@@ -39,11 +40,17 @@ class ResultActivity : AppCompatActivity() {
 
         val userInfoListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                result_signOutBtn.setOnClickListener {
+                    mAuth!!.signOut()
+                    startActivity(Intent(this@ResultActivity, MainActivity::class.java))
+                    finish()
+                }
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 result_nameData.text = dataSnapshot.child(user.uid).child("UserInfo").child("Username").getValue(
+                    String::class.java)
+                result_genderData.text = dataSnapshot.child(user.uid).child("UserInfo").child("Gender").getValue(
                     String::class.java)
             }
 

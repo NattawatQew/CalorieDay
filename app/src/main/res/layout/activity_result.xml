@@ -14,7 +14,6 @@
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="25dp">
         <TextView
-            android:id="@+id/result_nameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="User name: "
@@ -33,7 +32,24 @@
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="25dp">
         <TextView
-            android:id="@+id/result_emailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/result_genderData"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Gender" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="25dp">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email: "
@@ -52,7 +68,6 @@
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="25dp">
         <TextView
-            android:id="@+id/result_uidLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="UID: "
