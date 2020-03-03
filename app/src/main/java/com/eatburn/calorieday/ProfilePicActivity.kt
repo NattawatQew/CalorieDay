@@ -11,7 +11,7 @@ class ProfilePicActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_pic)
         pic_continueBtn.setOnClickListener {
-            startActivity(Intent(this@ProfilePicActivity, ProfileActivity::class.java))
+            startActivity(Intent(this@ProfilePicActivity, HelthInfoActivity::class.java))
         }
     }
 }
