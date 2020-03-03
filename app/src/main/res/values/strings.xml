@@ -16,4 +16,7 @@
     <string name="password_regis">password_regis</string>
     <string name="signout">Sign Out</string>
     <string name="sign_out">Sign out</string>
+    <string name="gender">Choose your GENDER</string>
+    <string name="male">MALE</string>
+    <string name="female">FEMALE</string>
 </resources>

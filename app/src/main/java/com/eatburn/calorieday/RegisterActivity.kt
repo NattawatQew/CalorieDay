@@ -74,7 +74,7 @@ class RegisterActivity : AppCompatActivity() {
                     mDatabase.child(uid).child("UserInfo").child("Username").setValue(username)
                     Toast.makeText(this, "Create account successfully!", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "Create account successfully!")
-                    startActivity(Intent(this@RegisterActivity, ResultActivity::class.java))
+                    startActivity(Intent(this@RegisterActivity, GenderActivity::class.java))
                     finish()
                 }
             }
