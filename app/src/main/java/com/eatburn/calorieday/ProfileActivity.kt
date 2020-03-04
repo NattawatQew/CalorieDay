@@ -53,6 +53,10 @@ class ProfileActivity : AppCompatActivity() {
         }
         mDatabase.addValueEventListener(userInfoListener)
 
+        result_updateBtn.setOnClickListener {
+            startActivity(Intent(this@ProfileActivity, GenderActivity::class.java))
+        }
+
         result_signOutBtn.setOnClickListener {
             mAuth!!.signOut()
             Toast.makeText(this, "Signed out!", Toast.LENGTH_SHORT).show()

@@ -81,6 +81,17 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/result_updateBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/colorPurple"
+        android:text="UPDATE PROFILE" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/result_signOutBtn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
