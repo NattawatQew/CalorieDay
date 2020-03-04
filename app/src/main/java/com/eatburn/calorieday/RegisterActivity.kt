@@ -36,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if (username.isEmpty()){
                 Toast.makeText(this, "Please enter your Username.", Toast.LENGTH_SHORT).show()
-                Log.d(TAG, "Email was empty!")
+                Log.d(TAG, "Username was empty!")
                 return@setOnClickListener
             }
             if (email.isEmpty()) {

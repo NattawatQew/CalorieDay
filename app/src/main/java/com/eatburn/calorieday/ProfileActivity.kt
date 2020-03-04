@@ -49,6 +49,12 @@ class ProfileActivity : AppCompatActivity() {
                     String::class.java)
                 result_genderData.text = dataSnapshot.child(user.uid).child("UserInfo").child("Gender").getValue(
                     String::class.java)
+                result_ageData.text = dataSnapshot.child(user.uid).child("UserInfo").child("Age").getValue(
+                    String::class.java)
+                result_heightData.text = dataSnapshot.child(user.uid).child("UserInfo").child("Height").getValue(
+                    String::class.java)
+                result_weightData.text = dataSnapshot.child(user.uid).child("UserInfo").child("Weight").getValue(
+                    String::class.java)
             }
         }
         mDatabase.addValueEventListener(userInfoListener)
