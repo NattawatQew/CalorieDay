@@ -51,7 +51,7 @@ class GoalWeightActivity : AppCompatActivity() {
                 override fun onCancelled(databaseError: DatabaseError) {}
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     weight = dataSnapshot.child(user.uid).child("UserInfo").child("Weight").getValue(toString()::class.java)
-                    if (weight!!.toInt() <= goalWeight.toInt()){
+                    if (weight!!.toInt() <= goalWeight.toInt() || (weight!!.toInt() - goalWeight.toInt()) <= 21){
                         Toast.makeText(this@GoalWeightActivity, "Please enter Correct Weight. (Goal Weight < Your Current Weight)", Toast.LENGTH_SHORT).show()
                         Log.d(TAG, "Goal Weight was incorrect!")
                     } else {
