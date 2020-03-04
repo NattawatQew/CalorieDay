@@ -55,6 +55,8 @@ class ProfileActivity : AppCompatActivity() {
                     String::class.java)
                 result_weightData.text = dataSnapshot.child(user.uid).child("UserInfo").child("Weight").getValue(
                     String::class.java)
+                result_bmiData.text = dataSnapshot.child(user.uid).child("Calories").child("BMI").getValue(
+                    Double::class.java).toString()
             }
         }
         mDatabase.addValueEventListener(userInfoListener)

@@ -7,6 +7,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_goal_weight.*
 import kotlinx.android.synthetic.main.activity_my_program.*
+import java.math.RoundingMode
+import kotlin.math.pow
+import kotlin.math.round
 import kotlin.math.roundToInt
 
 class MyProgramActivity : AppCompatActivity() {
@@ -24,6 +27,7 @@ class MyProgramActivity : AppCompatActivity() {
         val user = mAuth!!.currentUser
         val uid = user!!.uid
         var BMR = 0
+        var BMI: Double?
         var cal = 0
         var weight: String?
         var age: String?
@@ -43,6 +47,7 @@ class MyProgramActivity : AppCompatActivity() {
                 weightlose = dataSnapshot.child(uid).child("UserInfo").child("Want Weight").getValue(toString()::class.java)
                 goalWeight = dataSnapshot.child(uid).child("UserInfo").child("Goal Weight").getValue(toString()::class.java)
 
+                BMI = (weight!!.toInt() / ((height!!.toInt().toDouble())/100).pow(2.0)).round(2)
                 if (gender.equals("Male")){
                     BMR = (66 + (13.7 * weight!!.toInt()) + (5 * height!!.toInt()) - (6.8 * age!!.toInt())).roundToInt()
                     days = ((weight!!.toInt() - goalWeight!!.toInt()) / weightlose!!.toFloat()).roundToInt() * 7
@@ -60,6 +65,7 @@ class MyProgramActivity : AppCompatActivity() {
                     mDatabase.child(uid).child("Calories").child("Cal per day").setValue(cal)
                     mDatabase.child(uid).child("Calories").child("Days Need").setValue(days)
                 }
+                mDatabase.child(uid).child("Calories").child("BMI").setValue(BMI)
             }
         }
         mDatabase.addValueEventListener(calroryListener)
@@ -67,4 +73,11 @@ class MyProgramActivity : AppCompatActivity() {
             startActivity(Intent(this@MyProgramActivity, ReadyActivity::class.java))
         }
     }
+}
+
+// calculate 2 decimal
+fun Double.round(decimals: Int): Double {
+    var multiplier = 1.0
+    repeat(decimals) { multiplier *= 10 }
+    return round(this * multiplier) / multiplier
 }
