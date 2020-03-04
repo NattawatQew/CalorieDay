@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:background="@color/colorPurple"
+    tools:context=".GoalWeightActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorWhite"
+        android:textSize="33sp"
+        android:layout_marginBottom="50dp"
+        android:text="You are ready to go!" />
+
+    <ImageView
+        android:layout_marginTop="100dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center"
+        android:layout_margin="40dp"
+        android:src="@drawable/user"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorWhite"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginBottom="80dp"
+        android:text="Thanks for taking your time to \n create account with us. Now \n this is the fun part. Let's \n explore the app" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ready_continueBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        style="@style/Widget.MaterialComponents.Button"
+        app:elevation="5dp"
+        android:textColor="@color/colorPurple"
+        app:backgroundTint="@color/colorWhite"
+        android:layout_gravity="center_horizontal"
+        android:text="Get Started" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
