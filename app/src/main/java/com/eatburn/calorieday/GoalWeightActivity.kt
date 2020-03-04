@@ -26,7 +26,7 @@ class GoalWeightActivity : AppCompatActivity() {
 
         val user = mAuth!!.currentUser
         val uid = user!!.uid
-        var weight: kotlin.String? = null
+        var weight: kotlin.String?
 
         goal_continueBtn.setOnClickListener {
             val goalWeight = goal_weightEditText.text.toString().trim(){it <= ' '}
