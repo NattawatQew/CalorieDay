@@ -1,121 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    tools:context=".GoalWeightActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp">
-        <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        tools:context=".GoalWeightActivity">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPurple"
-            android:textSize="33sp"
-            android:layout_marginBottom="30dp"
-            android:text="Your GOAL Weight" />
-    </LinearLayout>
+            android:layout_marginTop="60dp">
 
-    <ImageView
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:layout_width="120dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:src="@drawable/goal"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp">
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:endIconMode="clear_text"
-            app:helperTextEnabled="true">
-            <EditText
-                android:id="@+id/goal_weightEditText"
-                android:layout_width="200dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Goal Weight"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textColor="#555555"
-            android:textSize="20sp"
-            android:layout_marginBottom="30dp"
-            android:text="kg." />
-    </LinearLayout>
+                android:textColor="@color/colorPurple"
+                android:textSize="33sp"
+                android:layout_margin="35dp"
+                android:text="Your GOAL Weight" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textColor="#555555"
-            android:textSize="20sp"
-            android:layout_marginBottom="30dp"
-            android:text="I want to lose" />
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        <ImageView
+            android:layout_marginBottom="40dp"
+            android:layout_width="120dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/goal" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            app:endIconMode="clear_text"
-            app:helperTextEnabled="true">
-            <EditText
-                android:id="@+id/goal_weightWantEditText"
-                android:layout_width="100dp"
+            android:layout_margin="10dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Weight"
-                android:inputType="numberDecimal" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <TextView
+                app:endIconMode="clear_text"
+                app:helperTextEnabled="true">
+
+                <EditText
+                    android:id="@+id/goal_weightEditText"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Goal Weight"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="#555555"
+                android:textSize="20sp"
+                android:layout_marginBottom="30dp"
+                android:text="kg." />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textColor="#555555"
-            android:textSize="20sp"
-            android:layout_marginBottom="50dp"
-            android:text="kg. / week" />
-    </LinearLayout>
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/goal_continueBtn"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        style="@style/Widget.MaterialComponents.Button"
-        app:elevation="5dp"
-        app:backgroundTint="@color/colorPurple"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/continueBtn" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="#555555"
+                android:textSize="20sp"
+                android:layout_marginBottom="30dp"
+                android:text="I want to lose" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:endIconMode="clear_text"
+                app:helperTextEnabled="true">
+
+                <EditText
+                    android:id="@+id/goal_weightWantEditText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Weight"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="#555555"
+                android:textSize="20sp"
+                android:layout_marginBottom="50dp"
+                android:text="kg. / week" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/goal_continueBtn"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            style="@style/Widget.MaterialComponents.Button"
+            app:elevation="5dp"
+            app:backgroundTint="@color/colorPurple"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/continueBtn" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

@@ -1,118 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    tools:context=".GoalWeightActivity">
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPurple"
-            android:textSize="33sp"
-            android:layout_marginBottom="40dp"
-            android:text="My Program" />
-    </LinearLayout>
-
-    <com.google.android.material.card.MaterialCardView
-        style="@style/Widget.MaterialComponents.CardView"
-        android:layout_height="400dp"
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_gravity="center"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="4dp"
-        android:backgroundTint="@color/colorLightPurple"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:textColor="#555555"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:text="Your daily calories intake \n should not exceed" />
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        tools:context=".GoalWeightActivity">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
-            android:layout_gravity="center_horizontal">
-            <TextView
-                android:id="@+id/myprogram_cal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPurple"
-                android:textSize="22sp"
-                android:text="Cal"/>
-            <TextView
-                android:layout_marginStart="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/colorPurple"
-                android:textSize="22sp"
-                android:layout_marginBottom="30dp"
-                android:text="Cal" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="You can achieve your goal in"
-            android:textAlignment="center"
-            android:layout_marginTop="290dp"
-            android:textColor="#555555"
-            android:textSize="20sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="320dp"
-            android:layout_gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/myprogram_days"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Days"
-                android:textColor="#555555"
-                android:textSize="20sp" />
+            android:layout_marginTop="60dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="5dp"
-                android:text="days you can do this!!!"
-                android:textColor="#555555"
-                android:textSize="20sp" />
+                android:textColor="@color/colorPurple"
+                android:textSize="33sp"
+                android:layout_marginBottom="40dp"
+                android:text="My Program" />
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_height="400dp"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="4dp"
+            android:backgroundTint="@color/colorLightPurple"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:textColor="#555555"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:text="Your daily calories intake \n should not exceed" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="170dp"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/myprogram_cal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPurple"
+                    android:textSize="30sp"
+                    android:text="Cal" />
+
+                <TextView
+                    android:layout_marginStart="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorPurple"
+                    android:textSize="30sp"
+                    android:layout_marginBottom="30dp"
+                    android:text="Cal" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="You can achieve your goal in"
+                android:textAlignment="center"
+                android:layout_marginTop="290dp"
+                android:textColor="#555555"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="320dp"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/myprogram_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Days"
+                    android:textColor="#555555"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="5dp"
+                    android:text="days you can do this!!!"
+                    android:textColor="#555555"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/myprogram_continueBtn"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        style="@style/Widget.MaterialComponents.Button"
-        app:elevation="5dp"
-        app:backgroundTint="@color/colorPurple"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/continueBtn" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/myprogram_continueBtn"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            style="@style/Widget.MaterialComponents.Button"
+            app:elevation="5dp"
+            app:backgroundTint="@color/colorPurple"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/continueBtn" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

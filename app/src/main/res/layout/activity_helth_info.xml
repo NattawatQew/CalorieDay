@@ -1,149 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    tools:context=".HelthInfoActivity">
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp">
-        <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        tools:context=".HelthInfoActivity">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center_horizontal">
 
-            android:textColor="@color/colorPurple"
-            android:textSize="33sp"
-            android:text="Let's us know about YOU" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_gravity="center"
-        android:layout_margin="40dp"
-        android:src="@drawable/obesity"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:endIconMode="clear_text"
-            app:helperTextEnabled="true">
-
-            <EditText
-                android:id="@+id/health_ageEditText"
-                android:layout_width="200dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Age"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:textColor="@color/colorPurple"
+                android:textSize="33sp"
+                android:text="Let's us know about YOU" />
+        </LinearLayout>
 
-        <TextView
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:layout_margin="40dp"
+            android:src="@drawable/obesity" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="20dp"
-            android:text="yrs"
-            android:textColor="#555555"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:layout_gravity="center_horizontal">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:endIconMode="clear_text"
-            app:helperTextEnabled="true">
-            <EditText
-                android:id="@+id/health_heightEditText"
-                android:layout_width="200dp"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="14dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Height"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:endIconMode="clear_text"
+                app:helperTextEnabled="true">
 
-        <TextView
+                <EditText
+                    android:id="@+id/health_ageEditText"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Age"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="20dp"
+                android:text="yrs"
+                android:textColor="#555555"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="20dp"
-            android:textColor="#555555"
-            android:textSize="20sp"
-            android:text="cm." />
-    </LinearLayout>
+            android:layout_gravity="center_horizontal">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:endIconMode="clear_text"
-            app:helperTextEnabled="true">
-            <EditText
-                android:id="@+id/health_weightEditText"
-                android:layout_width="200dp"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="17dp"
-                android:layout_marginBottom="20dp"
-                android:hint="Weight"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <TextView
+                app:endIconMode="clear_text"
+                app:helperTextEnabled="true">
+
+                <EditText
+                    android:id="@+id/health_heightEditText"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Height"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#555555"
+                android:textSize="20sp"
+                android:text="cm." />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="20dp"
-            android:textColor="#555555"
-            android:layout_marginStart="5dp"
-            android:textSize="20sp"
-            android:text="kg" />
-    </LinearLayout>
+            android:layout_gravity="center_horizontal">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/health_continueBtn"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        style="@style/Widget.MaterialComponents.Button"
-        app:elevation="5dp"
-        app:backgroundTint="@color/colorPurple"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/continueBtn" />
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:endIconMode="clear_text"
+                app:helperTextEnabled="true">
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+                <EditText
+                    android:id="@+id/health_weightEditText"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="17dp"
+                    android:layout_marginBottom="20dp"
+                    android:hint="Weight"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#555555"
+                android:layout_marginStart="5dp"
+                android:textSize="20sp"
+                android:text="kg" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/health_continueBtn"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            style="@style/Widget.MaterialComponents.Button"
+            app:elevation="5dp"
+            app:backgroundTint="@color/colorPurple"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/continueBtn" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>
