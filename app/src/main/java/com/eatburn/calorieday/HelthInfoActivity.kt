@@ -24,10 +24,11 @@ class HelthInfoActivity : AppCompatActivity() {
         mDatabase = FirebaseDatabase.getInstance().reference
 
         health_continueBtn.setOnClickListener {
+//             declare the variable into the string and trim by space
             val age = health_ageEditText.text.toString().trim(){it <= ' '}
             val height = health_heightEditText.text.toString().trim(){it <= ' '}
             val weight = health_weightEditText.text.toString().trim(){it <= ' '}
-
+//            if the input text is empty show the error bt toast
             if (age.isEmpty()){
                 Toast.makeText(this, "Please enter your Age.", Toast.LENGTH_SHORT).show()
                 Log.d(TAG, "Age was empty!")
@@ -45,6 +46,7 @@ class HelthInfoActivity : AppCompatActivity() {
             }
             val user = mAuth!!.currentUser
             val uid = user!!.uid
+//            add information the the database by uid
             mDatabase.child(uid).child("UserInfo").child("Age").setValue(age)
             mDatabase.child(uid).child("UserInfo").child("Height").setValue(height)
             mDatabase.child(uid).child("UserInfo").child("Weight").setValue(weight)

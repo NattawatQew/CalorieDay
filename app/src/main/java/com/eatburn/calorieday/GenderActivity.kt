@@ -17,20 +17,26 @@ class GenderActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gender)
+//        initialized the auth
         mAuth = FirebaseAuth.getInstance()
+//        initialized the database
         mDatabase = FirebaseDatabase.getInstance().reference
         val user = mAuth!!.currentUser
         val uid = user!!.uid
+//        For male
         male_btn.setOnClickListener{
+//            add new value to the database (.child means sub table)
             mDatabase.child(uid).child("UserInfo").child("Gender").setValue("Male")
             startActivity(Intent(this@GenderActivity, ProfilePicActivity::class.java))
         }
+//        For female
         female_btn.setOnClickListener{
             mDatabase.child(uid).child("UserInfo").child("Gender").setValue("Female")
             startActivity(Intent(this@GenderActivity, ProfilePicActivity::class.java))
         }
     }
 
+//    For back button if user click it will exit the app instead of go back to previous page.
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) { moveTaskToBack(true) }
         return super.onKeyDown(keyCode, event)

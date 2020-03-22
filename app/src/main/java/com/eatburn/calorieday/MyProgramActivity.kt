@@ -40,14 +40,16 @@ class MyProgramActivity : AppCompatActivity() {
         val calroryListener = object : ValueEventListener{
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot){
+//                pull the value from the database by using dataSnapshot and getValue
                 gender = dataSnapshot.child(uid).child("UserInfo").child("Gender").getValue(toString()::class.java)
                 age = dataSnapshot.child(uid).child("UserInfo").child("Age").getValue(toString()::class.java)
                 weight = dataSnapshot.child(uid).child("UserInfo").child("Weight").getValue(toString()::class.java)
                 height = dataSnapshot.child(uid).child("UserInfo").child("Height").getValue(toString()::class.java)
                 weightlose = dataSnapshot.child(uid).child("UserInfo").child("Want Weight").getValue(toString()::class.java)
                 goalWeight = dataSnapshot.child(uid).child("UserInfo").child("Goal Weight").getValue(toString()::class.java)
-
+//                calcurate the BMI and cal per day
                 BMI = (weight!!.toInt() / ((height!!.toInt().toDouble())/100).pow(2.0)).round(2)
+//                For Male
                 if (gender.equals("Male")){
                     BMR = (66 + (13.7 * weight!!.toInt()) + (5 * height!!.toInt()) - (6.8 * age!!.toInt())).roundToInt()
                     days = ((weight!!.toInt() - goalWeight!!.toInt()) / weightlose!!.toFloat()).roundToInt() * 7

@@ -20,15 +20,17 @@ class LoginActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
+//        check the current user if user already login, the page will go to profile page.
         if (mAuth!!.currentUser != null) {
             startActivity(Intent(this@LoginActivity, ProfileActivity::class.java))
             finish()
         }
 
         login_loginBtn.setOnClickListener {
+//             declare the variable into the string and trim by space
             val email = login_emailEditText.text.toString().trim { it <= ' ' }
             val password = login_passwordEditText.text.toString().trim { it <= ' ' }
-
+//            if the input text is empty show the error bt toast
             if (email.isEmpty()) {
                 Toast.makeText(this, "Please enter your email address.", Toast.LENGTH_SHORT).show()
                 Log.d(TAG, "Email was empty!")
