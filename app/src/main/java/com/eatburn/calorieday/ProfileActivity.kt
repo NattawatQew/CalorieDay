@@ -46,6 +46,8 @@ class ProfileActivity : AppCompatActivity() {
             }
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 //                get value form real time database into the string
+                result_nameData_Head.text = dataSnapshot.child(user.uid).child("UserInfo").child("Username").getValue(
+                    String::class.java)
                 result_nameData.text = dataSnapshot.child(user.uid).child("UserInfo").child("Username").getValue(
                     String::class.java)
                 result_genderData.text = dataSnapshot.child(user.uid).child("UserInfo").child("Gender").getValue(
@@ -58,6 +60,7 @@ class ProfileActivity : AppCompatActivity() {
                     String::class.java)
                 result_bmiData.text = dataSnapshot.child(user.uid).child("Calories").child("BMI").getValue(
                     Double::class.java).toString()
+
             }
         }
         mDatabase.addValueEventListener(userInfoListener)

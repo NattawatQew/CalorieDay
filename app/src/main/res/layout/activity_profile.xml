@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -14,14 +14,53 @@
 
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.MaterialComponents.CardView"
-            android:layout_height="150dp"
-            android:layout_width="500dp"
+            android:layout_height="100dp"
+            android:layout_width="415dp"
             android:layout_marginHorizontal="16dp"
             android:layout_gravity="center"
             app:cardCornerRadius="0dp"
             app:cardElevation="4dp"
+            android:layout_marginBottom="25dp"
             android:backgroundTint="@color/colorLightPurple">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/colorPrimary"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/result_nameData_Head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name"
+                    android:textSize="33sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="'s "
+                    android:textSize="33sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:textSize="33sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="right"
+                android:layout_margin="15dp"
+                android:src="@drawable/user" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -34,12 +73,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User name: "
+                android:textSize="20sp"
+                android:text="Name: "
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/result_nameData"
                 android:layout_width="250dp"
+                android:textSize="18sp"
                 android:layout_height="wrap_content"
                 android:text="Username" />
         </LinearLayout>
@@ -53,12 +94,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 android:text="Gender: "
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/result_genderData"
                 android:layout_width="250dp"
+                android:textSize="18sp"
                 android:layout_height="wrap_content"
                 android:text="Gender" />
         </LinearLayout>
@@ -66,22 +109,35 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="25dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 android:text="Age: "
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/result_ageData"
                 android:layout_width="250dp"
+                android:textSize="18sp"
                 android:layout_height="wrap_content"
                 android:text="Age" />
         </LinearLayout>
 
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_height="4dp"
+            android:layout_width="380dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="3dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="#51555555">
+        </com.google.android.material.card.MaterialCardView>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,12 +148,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Height: "
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/result_heightData"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:textSize="18sp"
                 android:text="Height" />
         </LinearLayout>
 
@@ -110,12 +168,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 android:text="Weight: "
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/result_weightData"
                 android:layout_width="250dp"
+                android:textSize="18sp"
                 android:layout_height="wrap_content"
                 android:text="Weight" />
         </LinearLayout>
@@ -123,21 +183,35 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="25dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 android:text="BMI: "
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/result_bmiData"
                 android:layout_width="250dp"
+                android:textSize="18sp"
                 android:layout_height="wrap_content"
                 android:text="BMI" />
         </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_height="4dp"
+            android:layout_width="380dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="3dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="#51555555">
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -149,12 +223,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email: "
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/result_emailData"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:textSize="18sp"
                 android:text="email" />
         </LinearLayout>
 
@@ -168,13 +244,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="UID: "
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/result_uidData"
-                android:layout_width="250dp"
+                android:layout_width="314dp"
                 android:layout_height="wrap_content"
-                android:text="uid" />
+                android:text="uid"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
