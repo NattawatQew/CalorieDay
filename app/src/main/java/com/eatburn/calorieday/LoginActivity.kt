@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Sign in successfully!", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "Sign in successfully!")
-                    startActivity(Intent(this@LoginActivity, ProfileActivity::class.java))
+                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                     finish()
                 }
             }

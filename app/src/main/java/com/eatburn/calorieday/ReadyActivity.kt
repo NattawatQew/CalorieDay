@@ -12,7 +12,7 @@ class ReadyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ready)
         ready_continueBtn.setOnClickListener {
-            startActivity(Intent(this@ReadyActivity, ProfileActivity::class.java))
+            startActivity(Intent(this@ReadyActivity, HomeActivity::class.java))
         }
     }
 }
