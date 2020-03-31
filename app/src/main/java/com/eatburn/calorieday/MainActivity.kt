@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        //        check the current user if user already login, the page will go to profile page.
         if (mAuth!!.currentUser != null) {
             Log.d(TAG, "Continue with: " + mAuth!!.currentUser!!.email)
             startActivity(Intent(this@MainActivity, ProfileActivity::class.java))
