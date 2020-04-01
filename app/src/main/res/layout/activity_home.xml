@@ -199,6 +199,15 @@
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
+<!--Test Button-->
+    <ImageButton
+        android:id="@+id/home_mygoalBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginRight="25dp"
+        android:layout_gravity="right"
+        android:src="@drawable/mountain_button" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
 

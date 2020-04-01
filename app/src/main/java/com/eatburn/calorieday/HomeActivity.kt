@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home.*
@@ -48,6 +49,9 @@ class HomeActivity : AppCompatActivity() {
         }
         home_ontrackBtn.setOnClickListener{
             startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
+        }
+        home_mygoalBtn.setOnClickListener {
+            startActivity(Intent(this@HomeActivity, MyGoalActivity::class.java))
         }
     }
 

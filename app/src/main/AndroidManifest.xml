@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MyGoalActivity"></activity>
+        <activity android:name=".NavHomeActivity" />
+        <activity android:name=".NavActivity" />
         <activity android:name=".ReadyActivity" />
         <activity android:name=".MyProgramActivity" />
         <activity
@@ -29,7 +32,7 @@
         <activity android:name=".ProfilePicActivity" />
         <activity android:name=".HelthInfoActivity" />
         <activity android:name=".GoalWeightActivity" />
-        <activity android:name=".HomeActivity"/>
+        <activity android:name=".HomeActivity" />
     </application>
 
 </manifest>
