@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home.*
+import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -23,6 +24,7 @@ class HomeActivity : AppCompatActivity() {
         mDatabase = FirebaseDatabase.getInstance().reference
 
         val user = mAuth!!.currentUser
+        val currentDate = Calendar.getInstance()
 
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
             val users = firebaseAuth.currentUser
@@ -43,6 +45,20 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         mDatabase.addValueEventListener(userInfoListener)
+
+        var time = currentDate.get(Calendar.HOUR_OF_DAY);
+        if(time in 5..11) {
+            home_timeData.text = "GOOD MORNING"
+        }
+        if(time in 12..17) {
+            home_timeData.text = "GOOD AFTERNOON"
+        }
+        if(time in 18..23) {
+            home_timeData.text = "GOOD EVENING"
+        }
+        if(time in 0..4) {
+            home_timeData.text = "GOOD NIGHT"
+        }
 
         home_profileBtn.setOnClickListener {
             startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
