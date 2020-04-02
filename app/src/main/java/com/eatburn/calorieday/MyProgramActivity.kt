@@ -8,6 +8,8 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_goal_weight.*
 import kotlinx.android.synthetic.main.activity_my_program.*
 import java.math.RoundingMode
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.pow
 import kotlin.math.round
 import kotlin.math.roundToInt
@@ -36,6 +38,10 @@ class MyProgramActivity : AppCompatActivity() {
         var weightlose: String?
         var goalWeight: String?
         var days = 0
+
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        val currentDate = sdf.format(Date())
+        val currentDatemil = Calendar.getInstance()
 
         val calroryListener = object : ValueEventListener{
             override fun onCancelled(databaseError: DatabaseError) {}
@@ -68,6 +74,8 @@ class MyProgramActivity : AppCompatActivity() {
                     mDatabase.child(uid).child("Calories").child("Days Need").setValue(days)
                 }
                 mDatabase.child(uid).child("Calories").child("BMI").setValue(BMI)
+                mDatabase.child(user!!.uid).child("Calories").child("Days Start").setValue(currentDate)
+                mDatabase.child(user!!.uid).child("Calories").child("Days Start in mil").setValue(currentDatemil.timeInMillis)
             }
         }
         mDatabase.addValueEventListener(calroryListener)
