@@ -76,6 +76,13 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
             finish()
         }
+
+        profile_mygoalBtn.setOnClickListener {
+            startActivity(Intent(this@ProfileActivity, MyGoalActivity::class.java))
+        }
+        profile_homeBtn.setOnClickListener {
+            startActivity(Intent(this@ProfileActivity, HomeActivity::class.java))
+        }
     }
 
     override fun onStart() {

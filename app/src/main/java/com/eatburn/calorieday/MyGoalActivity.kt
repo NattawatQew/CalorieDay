@@ -1,5 +1,6 @@
 package com.eatburn.calorieday
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -54,10 +55,16 @@ class MyGoalActivity : AppCompatActivity() {
                 }
                 mygoal_dayData.text = dayleft.toString()
                 mDatabase.child(user!!.uid).child("Calories").child("Days Remaining").setValue(dayleft)
-
             }
         }
         mDatabase.addValueEventListener(dayListener)
+
+        mygoal_profileBtn.setOnClickListener {
+            startActivity(Intent(this@MyGoalActivity, ProfileActivity::class.java))
+        }
+        mygoal_homeBtn.setOnClickListener {
+            startActivity(Intent(this@MyGoalActivity, HomeActivity::class.java))
+        }
     }
 }
 
