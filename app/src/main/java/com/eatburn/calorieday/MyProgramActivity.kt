@@ -41,7 +41,12 @@ class MyProgramActivity : AppCompatActivity() {
 
         val sdf = SimpleDateFormat("dd/M/yyyy")
         val currentDate = sdf.format(Date())
+
         val currentDatemil = Calendar.getInstance()
+        currentDatemil[Calendar.HOUR] = 0
+        currentDatemil[Calendar.MINUTE] = 0
+        currentDatemil[Calendar.SECOND] = 0
+        currentDatemil[Calendar.MILLISECOND] = 0
 
         val calroryListener = object : ValueEventListener{
             override fun onCancelled(databaseError: DatabaseError) {}
