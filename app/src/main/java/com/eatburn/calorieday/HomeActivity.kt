@@ -69,6 +69,9 @@ class HomeActivity : AppCompatActivity() {
         home_mygoalBtn.setOnClickListener {
             startActivity(Intent(this@HomeActivity, MyGoalActivity::class.java))
         }
+        home_addBtn.setOnClickListener {
+            startActivity(Intent(this@HomeActivity, AddOnActivity::class.java))
+        }
     }
 
     override fun onStart() {

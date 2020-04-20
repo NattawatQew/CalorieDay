@@ -83,6 +83,9 @@ class ProfileActivity : AppCompatActivity() {
         profile_homeBtn.setOnClickListener {
             startActivity(Intent(this@ProfileActivity, HomeActivity::class.java))
         }
+        profile_addBtn.setOnClickListener {
+            startActivity(Intent(this@ProfileActivity, AddOnActivity::class.java))
+        }
     }
 
     override fun onStart() {

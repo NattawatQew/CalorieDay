@@ -9,6 +9,8 @@
     android:orientation="vertical"
     tools:context=".MyGoalActivity">
 
+
+
     <com.google.android.material.card.MaterialCardView
         style="@style/Widget.MaterialComponents.CardView"
         android:layout_height="100dp"

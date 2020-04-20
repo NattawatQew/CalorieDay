@@ -65,6 +65,9 @@ class MyGoalActivity : AppCompatActivity() {
         mygoal_homeBtn.setOnClickListener {
             startActivity(Intent(this@MyGoalActivity, HomeActivity::class.java))
         }
+        mygoal_addBtn.setOnClickListener {
+            startActivity(Intent(this@MyGoalActivity, AddOnActivity::class.java))
+        }
     }
 }
 
