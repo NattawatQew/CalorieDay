@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddOnActivity"></activity>
+        <activity android:name=".BreakfastActivity"></activity>
+        <activity android:name=".AddOnActivity" />
         <activity android:name=".MyGoalActivity" />
         <activity android:name=".NavHomeActivity" />
         <activity android:name=".NavActivity" />

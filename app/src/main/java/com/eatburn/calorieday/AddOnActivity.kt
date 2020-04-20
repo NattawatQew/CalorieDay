@@ -22,7 +22,7 @@ class AddOnActivity : AppCompatActivity() {
             startActivity(Intent(this@AddOnActivity, ProfileActivity::class.java))
         }
         addOn_breakfast.setOnClickListener {
-            startActivity(Intent(this@AddOnActivity, HomeActivity::class.java))
+            startActivity(Intent(this@AddOnActivity, BreakfastActivity::class.java))
         }
         addOn_lunch.setOnClickListener {
             startActivity(Intent(this@AddOnActivity, HomeActivity::class.java))

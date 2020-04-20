@@ -87,24 +87,24 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-03-05T04:13:02.673Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/BytesBits/BytesBits" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/eatburn/calorieday" />
-    </key>
-    <key name="android.template.packageName">
-      <recent name="com.eatburn.calorieday" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Qew Nattawat\Documents\GitHub\CalorieDay\app\src\main\res\drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+    </key>
+    <key name="android.template.packageName">
+      <recent name="com.eatburn.calorieday" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/eatburn/calorieday" />
     </key>
   </component>
   <component name="RunDashboard">
