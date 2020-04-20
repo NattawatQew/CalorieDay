@@ -21,5 +21,17 @@ class AddOnActivity : AppCompatActivity() {
         addOn_profileBtn.setOnClickListener {
             startActivity(Intent(this@AddOnActivity, ProfileActivity::class.java))
         }
+        addOn_breakfast.setOnClickListener {
+            startActivity(Intent(this@AddOnActivity, HomeActivity::class.java))
+        }
+        addOn_lunch.setOnClickListener {
+            startActivity(Intent(this@AddOnActivity, HomeActivity::class.java))
+        }
+        addOn_dinner.setOnClickListener {
+            startActivity(Intent(this@AddOnActivity, HomeActivity::class.java))
+        }
+        addOn_exercise.setOnClickListener {
+            startActivity(Intent(this@AddOnActivity, HomeActivity::class.java))
+        }
     }
 }

@@ -183,7 +183,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:textColor="#555555"
             android:layout_marginLeft="80dp"
             android:text="Water "
@@ -192,10 +192,11 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="55dp"
             android:layout_marginLeft="80dp">
 
             <TextView
+                android:id="@+id/home_waterData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -207,6 +208,24 @@
                 android:textSize="20sp"
                 android:text=" / 8 glasses" />
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/home_plusWater"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="320dp"
+            android:backgroundTint="#00CCF8EC"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/addpic" />
+
+        <ImageButton
+            android:id="@+id/home_MinusWater"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="280dp"
+            android:backgroundTint="#00CCF8EC"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/minus" />
 
     </com.google.android.material.card.MaterialCardView>
 <!--Test Button-->

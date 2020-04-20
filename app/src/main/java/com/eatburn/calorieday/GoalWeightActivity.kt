@@ -60,10 +60,12 @@ class GoalWeightActivity : AppCompatActivity() {
                     if (weight!!.toInt() <= goalWeight.toInt()){
                         Toast.makeText(this@GoalWeightActivity, "Please enter Correct Weight. (Goal Weight < Your Current Weight)", Toast.LENGTH_SHORT).show()
                         Log.d(TAG, "Goal Weight was incorrect!")
+                        return
                     }
                     if ((weight!!.toInt() - goalWeight.toInt()) >= 21) {
                         Toast.makeText(this@GoalWeightActivity, "Please enter Correct Weight. (Goal Weight is too less)", Toast.LENGTH_SHORT).show()
                         Log.d(TAG, "Goal Weight was incorrect!")
+                        return
                     }
 //                    If pass the condition it will add the new value to real time database.
                     else {
