@@ -20,6 +20,7 @@ class MyGoalActivity : AppCompatActivity() {
         setContentView(R.layout.activity_my_goal)
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
+        mDatabase.keepSynced(true)
 
         var dayNeed: String?
         var dayStart: String?

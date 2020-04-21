@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context=".AddOnActivity">
+    tools:context=".BreakfastActivity">
 
     <com.google.android.material.card.MaterialCardView
         style="@style/Widget.MaterialComponents.CardView"
@@ -80,5 +80,16 @@
             android:inputType="text"
             android:autofillHints="menu" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/breakfast_submitBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        style="@style/Widget.MaterialComponents.Button"
+        app:elevation="5dp"
+        app:backgroundTint="@color/colorPurple"
+        android:layout_gravity="center_horizontal"
+        android:text="SUBMIT" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

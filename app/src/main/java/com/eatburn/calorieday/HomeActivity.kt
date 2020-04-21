@@ -24,6 +24,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
+        mDatabase!!.keepSynced(true)
 
         val user = mAuth!!.currentUser
         val currentDate = Calendar.getInstance()
