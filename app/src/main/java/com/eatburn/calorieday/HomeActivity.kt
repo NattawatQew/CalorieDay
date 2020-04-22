@@ -40,7 +40,6 @@ class HomeActivity : AppCompatActivity() {
 
         val sdf = SimpleDateFormat("yyyy/M/dd")
         val date: String = sdf.format(Date())
-        mDatabase.child(user!!.uid).child(date).child("Water").setValue(0)
 
         val userInfoListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {}
@@ -85,11 +84,19 @@ class HomeActivity : AppCompatActivity() {
         val waterListener = object : ValueEventListener{
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot){
+
+
 //                pull the value from the database by using dataSnapshot and getValue
                 water = dataSnapshot.child(user!!.uid).child(date).child("Water").value as Long?
+                if (water == null){
+                    mDatabase.child(user.uid).child(date).child("Water").setValue(0)
+                }
                 home_plusWater.setOnClickListener {
+                    if (water == null){
+                        water = 0
+                    }
                     water = water?.plus(1)
-                    mDatabase.child(user.uid).child(date).child("Water").setValue(water)
+                    mDatabase.child(user!!.uid).child(date).child("Water").setValue(water)
                     //startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
                     if (water!! > 8){
                         water = 8
@@ -102,7 +109,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 home_MinusWater.setOnClickListener {
                     water = water?.minus(1)
-                    mDatabase.child(user.uid).child(date).child("Water").setValue(water)
+                    mDatabase.child(user!!.uid).child(date).child("Water").setValue(water)
                     //startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
                     if (water!! < 0){
                         water = 0

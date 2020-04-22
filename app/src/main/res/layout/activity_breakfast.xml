@@ -77,7 +77,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:hint="Calories"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:autofillHints="menu" />
     </com.google.android.material.textfield.TextInputLayout>
 
