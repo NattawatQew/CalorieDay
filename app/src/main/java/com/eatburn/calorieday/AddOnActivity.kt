@@ -25,13 +25,13 @@ class AddOnActivity : AppCompatActivity() {
             startActivity(Intent(this@AddOnActivity, BreakfastActivity::class.java))
         }
         addOn_lunch.setOnClickListener {
-            startActivity(Intent(this@AddOnActivity, HomeActivity::class.java))
+            startActivity(Intent(this@AddOnActivity, LunchActivity::class.java))
         }
         addOn_dinner.setOnClickListener {
-            startActivity(Intent(this@AddOnActivity, HomeActivity::class.java))
+            startActivity(Intent(this@AddOnActivity, DinnerActivity::class.java))
         }
         addOn_exercise.setOnClickListener {
-            startActivity(Intent(this@AddOnActivity, HomeActivity::class.java))
+            startActivity(Intent(this@AddOnActivity, ExerciseActivity::class.java))
         }
     }
 }

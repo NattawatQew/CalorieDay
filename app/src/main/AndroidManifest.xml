@@ -3,8 +3,8 @@
     package="com.eatburn.calorieday">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BreakfastActivity"></activity>
+        <activity android:name=".ExerciseActivity"></activity>
+        <activity android:name=".DinnerActivity" />
+        <activity android:name=".LunchActivity" />
+        <activity android:name=".BreakfastActivity" />
         <activity android:name=".AddOnActivity" />
         <activity android:name=".MyGoalActivity" />
         <activity android:name=".NavHomeActivity" />
@@ -38,6 +41,5 @@
         <activity android:name=".GoalWeightActivity" />
         <activity android:name=".HomeActivity" />
     </application>
-
 
 </manifest>
