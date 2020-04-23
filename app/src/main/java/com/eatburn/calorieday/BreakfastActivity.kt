@@ -57,8 +57,8 @@ class BreakfastActivity : AppCompatActivity() {
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
         val user = mAuth!!.currentUser
-        val sdf = SimpleDateFormat("yyyy/M/dd")
-        val date: String = sdf.format(Date())
+        val df = SimpleDateFormat("EEE, d MMM yyyy")
+        val date: String = df.format(Calendar.getInstance().time)
         if (checkPermissions()) {
             if (isLocationEnabled()) {
 
@@ -112,8 +112,8 @@ class BreakfastActivity : AppCompatActivity() {
 //            findViewById<TextView>(R.id.latTextView).text = mLastLocation.latitude.toString()
 //            findViewById<TextView>(R.id.lonTextView).text = mLastLocation.longitude.toString()
             val user = mAuth!!.currentUser
-            val sdf = SimpleDateFormat("yyyy/M/dd")
-            val date: String = sdf.format(Date())
+            val df = SimpleDateFormat("EEE, d MMM yyyy")
+            val date: String = df.format(Calendar.getInstance().time)
             var count: Long?
             val locationListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {}
@@ -149,8 +149,8 @@ class BreakfastActivity : AppCompatActivity() {
             }
         }
 
-        val sdf = SimpleDateFormat("yyyy/M/dd")
-        val date: String = sdf.format(Date())
+        val df = SimpleDateFormat("EEE, d MMM yyyy")
+        val date: String = df.format(Calendar.getInstance().time)
         var count: Long?
 
 //        breakfast_submitBtn.setOnClickListener {

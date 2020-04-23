@@ -6,18 +6,16 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.transition.Slide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home.*
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -47,8 +45,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-        val sdf = SimpleDateFormat("yyyy/M/dd")
-        val date: String = sdf.format(Date())
+//        val df = SimpleDateFormat("EEE, d MMM yyyy, HH:mm")
+        val df = SimpleDateFormat("EEE, d MMM yyyy")
+        val date: String = df.format(Calendar.getInstance().time)
 
         val userInfoListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {}
