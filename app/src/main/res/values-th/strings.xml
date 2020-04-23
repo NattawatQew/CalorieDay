@@ -48,7 +48,7 @@
     <string name="yrs">ปี</string>
     <string name="height">ส่วนสูง</string>
     <string name="cm">ซม.</string>
-    <string name="welcome_back">ยินดีต้อนรับสู่ CalorieDay อีกครั้ง</string>
+    <string name="welcome_back">ยินดีต้อนรับสู่ CalorieDay</string>
     <string name="time">เวลา</string>
     <string name="name">ชื่อ</string>
     <string name="eat_the_right_amount_of_food_and_stay_nhydrated_through_the_day">อย่าลืมทานอาหารและดื่มน้ำให้เพียงพอในทุกวัน</string>
@@ -56,7 +56,7 @@
     <string name="xxx_cal">xxx แคลอรี่</string>
     <string name="cal">" แคลอรี่ "</string>
     <string name="water">น้ำ</string>
-    <string name="_8_glasses">/ 8 แก้ว</string>
+    <string name="_8_glasses">" / 8 แก้ว"</string>
     <string name="add_lunch">เพิ่มอาหารกลางวัน</string>
     <string name="days_remaining">เหลืออีก</string>
     <string name="day">วัน</string>

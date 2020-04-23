@@ -59,8 +59,8 @@
     <string name="cal">" Cal"</string>
     <string name="on_track" translatable="false">On track</string>
     <string name="water">Water</string>
-    <string name="x" translatable="false">x</string>
-    <string name="_8_glasses">/ 8 glasses</string>
+    <string name="x" translatable="false">"x "</string>
+    <string name="_8_glasses">" / 8 glasses"</string>
     <string name="add_lunch">Add Lunch</string>
     <string name="days_remaining">Days Remaining</string>
     <string name="day">day</string>
@@ -78,11 +78,11 @@
     <string name="age_">"Age: "</string>
     <string name="height_">"Height: "</string>
     <string name="weight_">"Weight: "</string>
-    <string name="bmi_" translatable="false">BMI:</string>
+    <string name="bmi_" translatable="false">"BMI: "</string>
     <string name="bmi" translatable="false">BMI</string>
     <string name="email_">"Email: "</string>
     <string name="email">"email "</string>
-    <string name="uid_" translatable="false">UID:</string>
+    <string name="uid_" translatable="false">"UID: "</string>
     <string name="uid" translatable="false">uid</string>
     <string name="update_profile">UPDATE PROFILE</string>
     <string name="profile_picture">Profile Picture</string>
