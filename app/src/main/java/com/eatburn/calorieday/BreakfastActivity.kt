@@ -58,8 +58,7 @@ class BreakfastActivity : AppCompatActivity() {
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
         val user = mAuth!!.currentUser
-        val df = SimpleDateFormat("EEE, d MMM yyyy")
-        val date: String = df.format(Calendar.getInstance().time)
+        val date: String = Calendar.getInstance().time.time.toString()
         if (checkPermissions()) {
             if (isLocationEnabled()) {
 
@@ -70,11 +69,9 @@ class BreakfastActivity : AppCompatActivity() {
                     } else {
 //                        findViewById<TextView>(R.id.latTextView).text = location.latitude.toString()
 //                        findViewById<TextView>(R.id.lonTextView).text = location.longitude.toString()
-                        var count: Long?
                         val locationListener = object : ValueEventListener {
                             override fun onCancelled(databaseError: DatabaseError) {}
                             override fun onDataChange(dataSnapshot: DataSnapshot){
-                                count = dataSnapshot.child(user!!.uid).child(date).child("Breakfast").child("Total").value as Long?
                                 mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Latitude").setValue(location.latitude)
                                 mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(location.longitude)
                             }
@@ -113,13 +110,9 @@ class BreakfastActivity : AppCompatActivity() {
 //            findViewById<TextView>(R.id.latTextView).text = mLastLocation.latitude.toString()
 //            findViewById<TextView>(R.id.lonTextView).text = mLastLocation.longitude.toString()
             val user = mAuth!!.currentUser
-            val df = SimpleDateFormat("EEE, d MMM yyyy")
-            val date: String = df.format(Calendar.getInstance().time)
-            var count: Long?
             val locationListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {}
                 override fun onDataChange(dataSnapshot: DataSnapshot){
-                    count = dataSnapshot.child(user!!.uid).child("Food & Exercise").child("Breakfast").child("Total").value as Long?
                     mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Latitude").setValue(mLastLocation.latitude)
                     mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(mLastLocation.longitude)
                 }
@@ -150,9 +143,6 @@ class BreakfastActivity : AppCompatActivity() {
             }
         }
 
-        val df = SimpleDateFormat("EEE, d MMM yyyy")
-        val date: String = df.format(Calendar.getInstance().time)
-
 //        breakfast_submitBtn.setOnClickListener {
 //            val menu = breakfast_menuEditText.text.toString().trim(){it <= ' '}
 //            val cal = breakfast_calEditText.text.toString().trim(){it <= ' '}
@@ -177,6 +167,7 @@ class BreakfastActivity : AppCompatActivity() {
 //                pull the value from the database by using dataSnapshot and getValue
                 val df: DateFormat = SimpleDateFormat("EEE, d MMM yyyy, HH:mm")
                 val currentdate = df.format(Calendar.getInstance().time)
+                val timestamp: String = Calendar.getInstance().time.time.toString()
 //                val currentdate = DateFormat.getDateInstance(DateFormat.FULL).calendar.time
 
 //                TIME_DIARY.text = currentdate.toString()
@@ -197,6 +188,7 @@ class BreakfastActivity : AppCompatActivity() {
                     mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Calories").setValue(cal)
                     mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Date and Time").setValue(currentdate.toString())
                     mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Meal").setValue("Breakfast")
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Timestamp").setValue(timestamp)
                     Toast.makeText(this@BreakfastActivity, "Add breakfast success", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "Add breakfast success")
                     mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this@BreakfastActivity)
