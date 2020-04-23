@@ -41,9 +41,9 @@
     <string name="activity">Activity</string>
     <string name="your_goal_weight">Your GOAL Weight</string>
     <string name="goal_weight">Goal Weight</string>
-    <string name="kg">kg.</string>
+    <string name="kg">" kg."</string>
     <string name="i_want_to_lose">I want to lose</string>
-    <string name="weight">Weight</string>
+    <string name="weight">"Weight "</string>
     <string name="kg_week">kg. / week</string>
     <string name="let_s_us_know_about_you">Let\'s us know about YOU</string>
     <string name="age">Age</string>
@@ -64,7 +64,7 @@
     <string name="add_lunch">Add Lunch</string>
     <string name="days_remaining">Days Remaining</string>
     <string name="day">day</string>
-    <string name="days">days</string>
+    <string name="days">" days"</string>
     <string name="my_goal_weight">My Goal Weight</string>
     <string name="my_program">My Program</string>
     <string name="your_daily_calories_intake_n_should_not_exceed">Your daily calories intake \n should not exceed</string>

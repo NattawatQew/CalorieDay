@@ -26,6 +26,7 @@ import java.util.*
 class BreakfastActivity : AppCompatActivity() {
 
     val PERMISSION_ID = 42
+    val id = UUID.randomUUID().toString()
 
     private fun checkPermissions(): Boolean {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -74,8 +75,8 @@ class BreakfastActivity : AppCompatActivity() {
                             override fun onCancelled(databaseError: DatabaseError) {}
                             override fun onDataChange(dataSnapshot: DataSnapshot){
                                 count = dataSnapshot.child(user!!.uid).child(date).child("Breakfast").child("Total").value as Long?
-                                mDatabase.child(user!!.uid).child(date).child("Breakfast").child(count.toString()).child("Latitude").setValue(location.latitude)
-                                mDatabase.child(user!!.uid).child(date).child("Breakfast").child(count.toString()).child("Longitude").setValue(location.longitude)
+                                mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Latitude").setValue(location.latitude)
+                                mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(location.longitude)
                             }
                         }
                         mDatabase.addValueEventListener(locationListener)
@@ -118,9 +119,9 @@ class BreakfastActivity : AppCompatActivity() {
             val locationListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {}
                 override fun onDataChange(dataSnapshot: DataSnapshot){
-                    count = dataSnapshot.child(user!!.uid).child(date).child("Breakfast").child("Total").value as Long?
-                    mDatabase.child(user!!.uid).child(date).child("Breakfast").child(count.toString()).child("Latitude").setValue(mLastLocation.latitude)
-                    mDatabase.child(user!!.uid).child(date).child("Breakfast").child(count.toString()).child("Longitude").setValue(mLastLocation.longitude)
+                    count = dataSnapshot.child(user!!.uid).child("Food & Exercise").child("Breakfast").child("Total").value as Long?
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Latitude").setValue(mLastLocation.latitude)
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(mLastLocation.longitude)
                 }
             }
             mDatabase.addValueEventListener(locationListener)
@@ -151,7 +152,6 @@ class BreakfastActivity : AppCompatActivity() {
 
         val df = SimpleDateFormat("EEE, d MMM yyyy")
         val date: String = df.format(Calendar.getInstance().time)
-        var count: Long?
 
 //        breakfast_submitBtn.setOnClickListener {
 //            val menu = breakfast_menuEditText.text.toString().trim(){it <= ' '}
@@ -180,16 +180,7 @@ class BreakfastActivity : AppCompatActivity() {
 //                val currentdate = DateFormat.getDateInstance(DateFormat.FULL).calendar.time
 
 //                TIME_DIARY.text = currentdate.toString()
-                count = dataSnapshot.child(user!!.uid).child(date).child("Breakfast").child("Total").value as Long?
-                if (count == null){
-                    mDatabase.child(user.uid).child(date).child("Breakfast").child("Total").setValue(0)
-                }
                 breakfast_submitBtn.setOnClickListener {
-                    if (count == null){
-                        count = 0
-                    }
-                    count = count?.plus(1)
-                    mDatabase.child(user.uid).child(date).child("Breakfast").child("Total").setValue(count)
                     val menu = breakfast_menuEditText.text.toString().trim(){it <= ' '}
                     val cal = breakfast_calEditText.text.toString().trim(){it <= ' '}
                     if (menu.isEmpty()){
@@ -202,9 +193,10 @@ class BreakfastActivity : AppCompatActivity() {
                         Log.d(TAG, "Cal was empty!")
                         return@setOnClickListener
                     }
-                    mDatabase.child(user!!.uid).child(date).child("Breakfast").child(count.toString()).child("Menu").setValue(menu)
-                    mDatabase.child(user!!.uid).child(date).child("Breakfast").child(count.toString()).child("Calories").setValue(cal)
-                    mDatabase.child(user!!.uid).child(date).child("Breakfast").child(count.toString()).child("Date and Time").setValue(currentdate.toString())
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Menu").setValue(menu)
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Calories").setValue(cal)
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Date and Time").setValue(currentdate.toString())
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Meal").setValue("Breakfast")
                     Toast.makeText(this@BreakfastActivity, "Add breakfast success", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "Add breakfast success")
                     mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this@BreakfastActivity)

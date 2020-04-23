@@ -35,6 +35,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val user = mAuth!!.currentUser
         val currentDate = Calendar.getInstance()
+//        val id = UUID.randomUUID().toString()
         var water: Long?
 
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
@@ -57,7 +58,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     String::class.java)
                 home_calData.text = dataSnapshot.child(user.uid).child("Calories").child("Cal per day").getValue(
                     Double::class.java)?.toInt().toString()
-                home_waterData.text = dataSnapshot.child(user.uid).child(date).child("Water").getValue(Double::class.java)?.toInt().toString()
+                home_waterData.text = dataSnapshot.child(user.uid).child("Water").child(date).getValue(Double::class.java)?.toInt().toString()
             }
         }
         mDatabase.addValueEventListener(userInfoListener)
@@ -99,20 +100,20 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
 //                pull the value from the database by using dataSnapshot and getValue
-                water = dataSnapshot.child(user!!.uid).child(date).child("Water").value as Long?
+                water = dataSnapshot.child(user!!.uid).child("Water").child(date).value as Long?
                 if (water == null){
-                    mDatabase.child(user.uid).child(date).child("Water").setValue(0)
+                    mDatabase.child(user.uid).child("Water").child(date).setValue(0)
                 }
                 home_plusWater.setOnClickListener {
                     if (water == null){
                         water = 0
                     }
                     water = water?.plus(1)
-                    mDatabase.child(user!!.uid).child(date).child("Water").setValue(water)
+                    mDatabase.child(user!!.uid).child("Water").child(date).setValue(water)
                     //startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
                     if (water!! > 8){
                         water = 8
-                        mDatabase.child(user.uid).child(date).child("Water").setValue(water)
+                        mDatabase.child(user.uid).child("Water").child(date).setValue(water)
                         Toast.makeText(this@HomeActivity, "You already drank 8 glasses of water", Toast.LENGTH_SHORT).show()
                         Log.d(TAG, "already drank 8 glasses of water")
                         return@setOnClickListener
@@ -121,11 +122,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 home_MinusWater.setOnClickListener {
                     water = water?.minus(1)
-                    mDatabase.child(user!!.uid).child(date).child("Water").setValue(water)
+                    mDatabase.child(user!!.uid).child("Water").child(date).setValue(water)
                     //startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
                     if (water!! < 0){
                         water = 0
-                        mDatabase.child(user.uid).child(date).child("Water").setValue(water)
+                        mDatabase.child(user.uid).child("Water").child(date).setValue(water)
                         Toast.makeText(this@HomeActivity, "Must have at least 0 glasses of water", Toast.LENGTH_SHORT).show()
                         Log.d(TAG, "Must have at least 0 glasses of water")
                         return@setOnClickListener
