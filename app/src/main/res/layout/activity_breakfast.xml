@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="30dp"
-            android:text="Add Breakfast"
+            android:text="@string/add_breakfast"
             android:textColor="#555555"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -54,7 +54,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:hint="Menu"
+            android:hint="@string/menu"
             android:inputType="text"
             android:autofillHints="menu" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -76,7 +76,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:hint="Calories"
+            android:hint="@string/calories"
             android:inputType="numberDecimal"
             android:autofillHints="menu" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -90,6 +90,6 @@
         app:elevation="5dp"
         app:backgroundTint="@color/colorPurple"
         android:layout_gravity="center_horizontal"
-        android:text="SUBMIT" />
+        android:text="@string/submit" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

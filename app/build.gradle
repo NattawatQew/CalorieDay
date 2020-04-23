@@ -67,4 +67,6 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui:$navigation_version"
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigation_version"
+//  setting drawer navigation
+    implementation 'com.google.android.material:material:1.0.0'
 }

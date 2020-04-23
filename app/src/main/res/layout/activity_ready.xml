@@ -22,7 +22,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="33sp"
             android:layout_marginBottom="50dp"
-            android:text="You are ready to go!" />
+            android:text="@string/you_are_ready_to_go" />
 
         <ImageView
             android:layout_marginTop="100dp"
@@ -40,7 +40,7 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:layout_marginBottom="80dp"
-            android:text="Thanks for taking your time to \n create account with us. Now \n this is the fun part. Let's \n explore the app" />
+            android:text="@string/thanks_for_taking_your_time_to_n_create_account_with_us_now_n_this_is_the_fun_part_let_s_n_explore_the_app" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/ready_continueBtn"
@@ -53,7 +53,7 @@
             android:textColor="@color/colorPurple"
             app:backgroundTint="@color/colorWhite"
             android:layout_gravity="center_horizontal"
-            android:text="Get Started" />
+            android:text="@string/get_started" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>

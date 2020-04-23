@@ -4,20 +4,29 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.transition.Slide
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     var mAuth: FirebaseAuth? = null
     var mAuthListener: FirebaseAuth.AuthStateListener? = null
     lateinit var mDatabase: DatabaseReference
     private val TAG:String = "Home Activity"
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var navView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,19 +63,23 @@ class HomeActivity : AppCompatActivity() {
         }
         mDatabase.addValueEventListener(userInfoListener)
 
-        var time = currentDate.get(Calendar.HOUR_OF_DAY);
+        var time = currentDate.get(Calendar.HOUR_OF_DAY);//startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
 
-        if(time in 5..11) {
-            home_timeData.text = "GOOD MORNING"
-        }
-        if(time in 12..17) {
-            home_timeData.text = "GOOD AFTERNOON"
-        }
-        if(time in 18..23) {
-            home_timeData.text = "GOOD EVENING"
-        }
-        if(time in 0..4) {
-            home_timeData.text = "GOODNIGHT"
+
+        //                pull the value from the database by using dataSnapshot and getValue
+        when (time) {
+            in 5..11 -> {
+                home_timeData.text = getString(R.string.msg_greet_good_morning)
+            }
+            in 12..17 -> {
+                home_timeData.text = getString(R.string.msg_greet_good_afternoon)
+            }
+            in 18..23 -> {
+                home_timeData.text = getString(R.string.msg_greet_good_evening)
+            }
+            in 0..4 -> {
+                home_timeData.text = getString(R.string.msg_greet_good_night)
+            }
         }
 
         home_profileBtn.setOnClickListener {
@@ -122,9 +135,33 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
-        mDatabase.addValueEventListener(waterListener)
-    }
 
+        mDatabase.addValueEventListener(waterListener)
+
+
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById<NavigationView>(R.id.nav_view).apply{
+            setNavigationItemSelectedListener(this@HomeActivity)
+        }
+//
+        home_setting.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        Log.d("Drawer", "Item Clicked! ${item.itemId}")
+        when (item.itemId) {
+            R.id.nav_translate -> {
+                Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_changecolor -> {
+                Toast.makeText(this, "Messages clicked", Toast.LENGTH_SHORT).show()
+            }
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
     override fun onStart() {
         super.onStart()
         mAuth!!.addAuthStateListener { mAuthListener }

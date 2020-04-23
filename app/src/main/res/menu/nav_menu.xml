@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/nav_translate"
+            android:icon="@drawable/nav_translate"
+            android:title="@string/translate"/>
+        <item
+            android:id="@+id/nav_changecolor"
+            android:icon="@drawable/nav_changecolor"
+            android:title="@string/change_color"/>
+
+    </group>
+
+
+</menu>

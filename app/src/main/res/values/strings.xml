@@ -19,8 +19,80 @@
     <string name="gender">Choose your GENDER</string>
     <string name="male">MALE</string>
     <string name="female">FEMALE</string>
-    <string name="title_activity_home">HomeActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="msg_greet_good_morning">GOOD MORNING</string>
+    <string name="msg_greet_good_afternoon">GOOD AFTERNOON</string>
+    <string name="msg_greet_good_evening">GOOD EVENING</string>
+    <string name="msg_greet_good_night">GOODNIGHT</string>
+    <string name="add_on">Add On</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="exercise">Exercise</string>
+    <string name="add_breakfast">Add Breakfast</string>
+    <string name="menu">Menu</string>
+    <string name="calories">Calories</string>
+    <string name="submit">SUBMIT</string>
+    <string name="add_dinner">Add Dinner</string>
+    <string name="add_exercise">Add Exercise</string>
+    <string name="activity">Activity</string>
+    <string name="your_goal_weight">Your GOAL Weight</string>
+    <string name="goal_weight">Goal Weight</string>
+    <string name="kg">kg.</string>
+    <string name="i_want_to_lose">I want to lose</string>
+    <string name="weight">Weight</string>
+    <string name="kg_week">kg. / week</string>
+    <string name="let_s_us_know_about_you">Let\'s us know about YOU</string>
+    <string name="age">Age</string>
+    <string name="yrs">yrs</string>
+    <string name="height">Height</string>
+    <string name="cm">cm.</string>
+    <string name="welcome_back">Welcome Back,</string>
+    <string name="time">TIME</string>
+    <string name="name">name</string>
+    <string name="eat_the_right_amount_of_food_and_stay_nhydrated_through_the_day">Eat the right amount of food and stay \nhydrated through the day.</string>
+    <string name="nutrition">Nutrition</string>
+    <string name="xxx_cal">xxx Cal</string>
+    <string name="cal">" Cal"</string>
+    <string name="on_track" translatable="false">On track</string>
+    <string name="water">Water</string>
+    <string name="x" translatable="false">x</string>
+    <string name="_8_glasses">/ 8 glasses</string>
+    <string name="add_lunch">Add Lunch</string>
+    <string name="days_remaining">Days Remaining</string>
+    <string name="day">day</string>
+    <string name="days">days</string>
+    <string name="my_goal_weight">My Goal Weight</string>
+    <string name="my_program">My Program</string>
+    <string name="your_daily_calories_intake_n_should_not_exceed">Your daily calories intake \n should not exceed</string>
+    <string name="you_can_achieve_your_goal_in">You can achieve your goal in</string>
+    <string name="days_you_can_do_this">days you can do this!!!</string>
+    <string name="s" translatable="false">\'s</string>
+    <string name="profile">Profile</string>
+    <string name="name_">"Name: "</string>
+    <string name="username_">"Username "</string>
+    <string name="gender_">"Gender: "</string>
+    <string name="age_">"Age: "</string>
+    <string name="height_">"Height: "</string>
+    <string name="weight_">"Weight: "</string>
+    <string name="bmi_" translatable="false">BMI:</string>
+    <string name="bmi" translatable="false">BMI</string>
+    <string name="email_">"Email: "</string>
+    <string name="email">"email "</string>
+    <string name="uid_" translatable="false">UID:</string>
+    <string name="uid" translatable="false">uid</string>
+    <string name="update_profile">UPDATE PROFILE</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="you_can_select_photo_from_your_own_photo_n_or_n_use_camera_to_take_a_photo">You can select photo from your own photo \n OR \n Use camera to take a photo</string>
+    <string name="add_custom_photo">Add Custom Photo</string>
+    <string name="you_are_ready_to_go">You are ready to go!</string>
+    <string name="thanks_for_taking_your_time_to_n_create_account_with_us_now_n_this_is_the_fun_part_let_s_n_explore_the_app">Thanks for taking your time to \n create account with us. Now \n this is the fun part. Let\'s \n explore the app</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="you_can_select_this_following_menu">You can select this following menu</string>
+    <string name="translate">Translate</string>
+    <string name="change_color">Change Color</string>
+    <string name="_8_glasses_">8 glasses</string>
 </resources>

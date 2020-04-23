@@ -36,21 +36,21 @@
                     android:id="@+id/result_nameData_Head"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="name"
+                    android:text="@string/name"
                     android:textSize="33sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="'s "
+                    android:text="@string/s"
                     android:textSize="33sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Profile"
+                    android:text="@string/profile"
                     android:textSize="33sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Name: "
+                android:text="@string/name_"
                 android:textStyle="bold" />
 
             <TextView
@@ -82,7 +82,7 @@
                 android:layout_width="250dp"
                 android:textSize="18sp"
                 android:layout_height="wrap_content"
-                android:text="Username" />
+                android:text="@string/username_" />
         </LinearLayout>
 
         <LinearLayout
@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Gender: "
+                android:text="@string/gender_"
                 android:textStyle="bold" />
 
             <TextView
@@ -103,7 +103,7 @@
                 android:layout_width="250dp"
                 android:textSize="18sp"
                 android:layout_height="wrap_content"
-                android:text="Gender" />
+                android:text="@string/gender" />
         </LinearLayout>
 
         <LinearLayout
@@ -116,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Age: "
+                android:text="@string/age_"
                 android:textStyle="bold" />
 
             <TextView
@@ -124,7 +124,7 @@
                 android:layout_width="250dp"
                 android:textSize="18sp"
                 android:layout_height="wrap_content"
-                android:text="Age" />
+                android:text="@string/age" />
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
@@ -147,7 +147,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Height: "
+                android:text="@string/height_"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -156,7 +156,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="Height" />
+                android:text="@string/height" />
         </LinearLayout>
 
         <LinearLayout
@@ -169,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Weight: "
+                android:text="@string/weight_"
                 android:textStyle="bold" />
 
             <TextView
@@ -177,7 +177,7 @@
                 android:layout_width="250dp"
                 android:textSize="18sp"
                 android:layout_height="wrap_content"
-                android:text="Weight" />
+                android:text="@string/weight" />
         </LinearLayout>
 
         <LinearLayout
@@ -190,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="BMI: "
+                android:text="@string/bmi_"
                 android:textStyle="bold" />
 
             <TextView
@@ -198,7 +198,7 @@
                 android:layout_width="250dp"
                 android:textSize="18sp"
                 android:layout_height="wrap_content"
-                android:text="BMI" />
+                android:text="@string/bmi" />
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
@@ -222,7 +222,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email: "
+                android:text="@string/email_"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -231,7 +231,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="email" />
+                android:text="@string/email" />
         </LinearLayout>
 
         <LinearLayout
@@ -243,7 +243,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="UID: "
+                android:text="@string/uid_"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -251,7 +251,7 @@
                 android:id="@+id/result_uidData"
                 android:layout_width="314dp"
                 android:layout_height="wrap_content"
-                android:text="uid"
+                android:text="@string/uid"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -264,7 +264,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/colorPurple"
-            android:text="UPDATE PROFILE" />
+            android:text="@string/update_profile" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/result_signOutBtn"

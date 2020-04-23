@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="15dp"
-            android:text="Days Remaining"
+            android:text="@string/days_remaining"
             android:textColor="#555555"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -49,13 +49,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="day" />
+                android:text="@string/day" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text=" days" />
+                android:text="@string/days" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="15dp"
-            android:text="My Goal Weight"
+            android:text="@string/my_goal_weight"
             android:textColor="#555555"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -96,13 +96,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="weight" />
+                android:text="@string/weight" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text=" KG" />
+                android:text="@string/kg" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="15dp"
-            android:text="Nutrition"
+            android:text="@string/nutrition"
             android:textColor="#555555"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -143,13 +143,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="weight" />
+                android:text="@string/weight" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text=" Cal" />
+                android:text="@string/cal" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -174,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="15dp"
-            android:text="Water"
+            android:text="@string/water"
             android:textColor="#555555"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -189,7 +189,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="8 glasses" />
+                android:text="@string/_8_glasses_" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

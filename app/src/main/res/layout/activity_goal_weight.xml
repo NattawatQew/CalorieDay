@@ -26,7 +26,7 @@
                 android:textColor="@color/colorPurple"
                 android:textSize="33sp"
                 android:layout_margin="35dp"
-                android:text="Your GOAL Weight" />
+                android:text="@string/your_goal_weight" />
         </LinearLayout>
 
         <ImageView
@@ -59,7 +59,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:hint="Goal Weight"
+                    android:hint="@string/goal_weight"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,7 +70,7 @@
                 android:textColor="#555555"
                 android:textSize="20sp"
                 android:layout_marginBottom="30dp"
-                android:text="kg." />
+                android:text="@string/kg" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +86,7 @@
                 android:textColor="#555555"
                 android:textSize="20sp"
                 android:layout_marginBottom="30dp"
-                android:text="I want to lose" />
+                android:text="@string/i_want_to_lose" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
@@ -105,7 +105,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:hint="Weight"
+                    android:hint="@string/weight"
                     android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,7 +116,7 @@
                 android:textColor="#555555"
                 android:textSize="20sp"
                 android:layout_marginBottom="50dp"
-                android:text="kg. / week" />
+                android:text="@string/kg_week" />
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton

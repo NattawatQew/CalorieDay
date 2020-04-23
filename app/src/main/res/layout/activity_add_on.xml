@@ -10,7 +10,7 @@
 
 
     <TextView
-        android:text="Add On"
+        android:text="@string/add_on"
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="35dp"
-            android:text="Breakfast"
+            android:text="@string/breakfast"
             android:textColor="#555555"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="35dp"
-            android:text="Lunch"
+            android:text="@string/lunch"
             android:textColor="#555555"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -118,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="35dp"
-            android:text="Dinner"
+            android:text="@string/dinner"
             android:textColor="#555555"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -155,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="35dp"
-            android:text="Exercise"
+            android:text="@string/exercise"
             android:textColor="#555555"
             android:textSize="20sp"
             android:textStyle="bold" />

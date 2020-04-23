@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="vertical"
         tools:context=".HelthInfoActivity">
@@ -25,7 +25,7 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/colorPurple"
                 android:textSize="33sp"
-                android:text="Let's us know about YOU" />
+                android:text="@string/let_s_us_know_about_you" />
         </LinearLayout>
 
         <ImageView
@@ -57,7 +57,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:hint="Age"
+                    android:hint="@string/age"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:layout_marginTop="20dp"
-                android:text="yrs"
+                android:text="@string/yrs"
                 android:textColor="#555555"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -93,7 +93,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="14dp"
                     android:layout_marginBottom="8dp"
-                    android:hint="Height"
+                    android:hint="@string/height"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +104,7 @@
                 android:layout_marginTop="20dp"
                 android:textColor="#555555"
                 android:textSize="20sp"
-                android:text="cm." />
+                android:text="@string/cm" />
         </LinearLayout>
 
         <LinearLayout
@@ -129,7 +129,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="17dp"
                     android:layout_marginBottom="20dp"
-                    android:hint="Weight"
+                    android:hint="@string/weight"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,7 +141,7 @@
                 android:textColor="#555555"
                 android:layout_marginStart="5dp"
                 android:textSize="20sp"
-                android:text="kg" />
+                android:text="@string/kg" />
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton

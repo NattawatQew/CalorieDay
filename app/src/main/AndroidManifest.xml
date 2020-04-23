@@ -13,19 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity android:name=".ExerciseActivity"></activity>
         <activity android:name=".DinnerActivity" />
         <activity android:name=".LunchActivity" />
         <activity android:name=".BreakfastActivity" />
         <activity android:name=".AddOnActivity" />
         <activity android:name=".MyGoalActivity" />
-        <activity android:name=".NavHomeActivity" />
-        <activity android:name=".NavActivity" />
         <activity android:name=".ReadyActivity" />
         <activity android:name=".MyProgramActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.Loading">
+<!--            android:theme1="@style/AppTheme.NoActionBar">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
