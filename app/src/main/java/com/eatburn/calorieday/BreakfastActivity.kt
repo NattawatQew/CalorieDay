@@ -7,12 +7,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_breakfast.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class BreakfastActivity : AppCompatActivity() {
 
@@ -174,7 +175,10 @@ class BreakfastActivity : AppCompatActivity() {
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot){
 //                pull the value from the database by using dataSnapshot and getValue
-                val currentdate = DateFormat.getDateInstance(DateFormat.FULL).calendar.time
+                val df: DateFormat = SimpleDateFormat("EEE, d MMM yyyy, HH:mm")
+                val currentdate = df.format(Calendar.getInstance().time)
+//                val currentdate = DateFormat.getDateInstance(DateFormat.FULL).calendar.time
+
 //                TIME_DIARY.text = currentdate.toString()
                 count = dataSnapshot.child(user!!.uid).child(date).child("Breakfast").child("Total").value as Long?
                 if (count == null){

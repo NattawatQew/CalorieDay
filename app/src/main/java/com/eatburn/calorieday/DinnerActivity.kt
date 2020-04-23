@@ -153,7 +153,8 @@ class DinnerActivity : AppCompatActivity() {
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot){
 //                pull the value from the database by using dataSnapshot and getValue
-                val currentdate = DateFormat.getDateInstance(DateFormat.FULL).calendar.time
+                val df: DateFormat = SimpleDateFormat("EEE, d MMM yyyy, HH:mm")
+                val currentdate = df.format(Calendar.getInstance().time)
 //                TIME_DIARY.text = currentdate.toString()
                 count = dataSnapshot.child(user!!.uid).child(date).child("Dinner").child("Total").value as Long?
                 if (count == null){
