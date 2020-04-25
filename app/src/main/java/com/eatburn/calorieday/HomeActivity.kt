@@ -2,6 +2,7 @@ package com.eatburn.calorieday
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.KeyEvent
 import android.view.MenuItem
@@ -13,6 +14,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.nav_header.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,7 +49,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 //        val df = SimpleDateFormat("EEE, d MMM yyyy, HH:mm")
-        val df = SimpleDateFormat("EEE, d MMM yyyy")
+        val df = SimpleDateFormat("d MM yyyy")
         val date: String = df.format(Calendar.getInstance().time)
 
         val userInfoListener = object : ValueEventListener {
@@ -59,6 +61,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 home_calData.text = dataSnapshot.child(user.uid).child("Calories").child("Cal per day").getValue(
                     Double::class.java)?.toInt().toString()
                 home_waterData.text = dataSnapshot.child(user.uid).child("Water").child(date).getValue(Double::class.java)?.toInt().toString()
+                nav_profile.text = dataSnapshot.child(user!!.uid).child("UserInfo").child("Username").getValue(
+                    String::class.java)
             }
         }
         mDatabase.addValueEventListener(userInfoListener)
@@ -85,14 +89,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         home_profileBtn.setOnClickListener {
             startActivity(Intent(this@HomeActivity, ProfileActivity::class.java))
         }
-        home_ontrackBtn.setOnClickListener{
-            startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
-        }
         home_mygoalBtn.setOnClickListener {
             startActivity(Intent(this@HomeActivity, MyGoalActivity::class.java))
         }
         home_addBtn.setOnClickListener {
             startActivity(Intent(this@HomeActivity, AddOnActivity::class.java))
+        }
+        home_bookBtn.setOnClickListener{
+            startActivity(Intent(this@HomeActivity, OnTrackActivity::class.java))
         }
         val waterListener = object : ValueEventListener{
             override fun onCancelled(databaseError: DatabaseError) {}
@@ -153,6 +157,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Log.d("Drawer", "Item Clicked! ${item.itemId}")
         when (item.itemId) {
             R.id.nav_translate -> {
+                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(intent)
                 Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_changecolor -> {

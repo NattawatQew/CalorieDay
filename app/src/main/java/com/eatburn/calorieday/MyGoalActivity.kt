@@ -69,6 +69,9 @@ class MyGoalActivity : AppCompatActivity() {
         mygoal_addBtn.setOnClickListener {
             startActivity(Intent(this@MyGoalActivity, AddOnActivity::class.java))
         }
+        mygoal_bookBtn.setOnClickListener{
+            startActivity(Intent(this@MyGoalActivity, OnTrackActivity::class.java))
+        }
     }
 }
 

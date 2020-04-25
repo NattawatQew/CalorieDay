@@ -26,6 +26,7 @@ import java.util.*
 class DinnerActivity : AppCompatActivity() {
 
     val PERMISSION_ID = 42
+    val id = UUID.randomUUID().toString()
 
     private fun checkPermissions(): Boolean {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -57,8 +58,7 @@ class DinnerActivity : AppCompatActivity() {
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
         val user = mAuth!!.currentUser
-        val df = SimpleDateFormat("EEE, d MMM yyyy")
-        val date: String = df.format(Calendar.getInstance().time)
+        val date: String = Calendar.getInstance().time.time.toString()
         if (checkPermissions()) {
             if (isLocationEnabled()) {
 
@@ -67,13 +67,13 @@ class DinnerActivity : AppCompatActivity() {
                     if (location == null) {
                         requestNewLocationData()
                     } else {
-                        var count: Long?
+//                        findViewById<TextView>(R.id.latTextView).text = location.latitude.toString()
+//                        findViewById<TextView>(R.id.lonTextView).text = location.longitude.toString()
                         val locationListener = object : ValueEventListener {
                             override fun onCancelled(databaseError: DatabaseError) {}
                             override fun onDataChange(dataSnapshot: DataSnapshot){
-                                count = dataSnapshot.child(user!!.uid).child(date).child("Dinner").child("Total").value as Long?
-                                mDatabase.child(user!!.uid).child(date).child("Dinner").child(count.toString()).child("Latitude").setValue(location.latitude)
-                                mDatabase.child(user!!.uid).child(date).child("Dinner").child(count.toString()).child("Longitude").setValue(location.longitude)
+                                mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Latitude").setValue(location.latitude)
+                                mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(location.longitude)
                             }
                         }
                         mDatabase.addValueEventListener(locationListener)
@@ -107,16 +107,14 @@ class DinnerActivity : AppCompatActivity() {
     private val mLocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             var mLastLocation: Location = locationResult.lastLocation
+//            findViewById<TextView>(R.id.latTextView).text = mLastLocation.latitude.toString()
+//            findViewById<TextView>(R.id.lonTextView).text = mLastLocation.longitude.toString()
             val user = mAuth!!.currentUser
-            val df = SimpleDateFormat("EEE, d MMM yyyy")
-            val date: String = df.format(Calendar.getInstance().time)
-            var count: Long?
             val locationListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {}
                 override fun onDataChange(dataSnapshot: DataSnapshot){
-                    count = dataSnapshot.child(user!!.uid).child(date).child("Dinner").child("Total").value as Long?
-                    mDatabase.child(user!!.uid).child(date).child("Dinner").child(count.toString()).child("Latitude").setValue(mLastLocation.latitude)
-                    mDatabase.child(user!!.uid).child(date).child("Dinner").child(count.toString()).child("Longitude").setValue(mLastLocation.longitude)
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Latitude").setValue(mLastLocation.latitude)
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(mLastLocation.longitude)
                 }
             }
             mDatabase.addValueEventListener(locationListener)
@@ -145,27 +143,17 @@ class DinnerActivity : AppCompatActivity() {
             }
         }
 
-        val df = SimpleDateFormat("EEE, d MMM yyyy")
-        val date: String = df.format(Calendar.getInstance().time)
-        var count: Long?
-
         val dinnerListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot){
 //                pull the value from the database by using dataSnapshot and getValue
                 val df: DateFormat = SimpleDateFormat("EEE, d MMM yyyy, HH:mm")
                 val currentdate = df.format(Calendar.getInstance().time)
+                val timestamp: String = Calendar.getInstance().time.time.toString()
+//                val currentdate = DateFormat.getDateInstance(DateFormat.FULL).calendar.time
+
 //                TIME_DIARY.text = currentdate.toString()
-                count = dataSnapshot.child(user!!.uid).child(date).child("Dinner").child("Total").value as Long?
-                if (count == null){
-                    mDatabase.child(user.uid).child(date).child("Dinner").child("Total").setValue(0)
-                }
                 dinner_submitBtn.setOnClickListener {
-                    if (count == null){
-                        count = 0
-                    }
-                    count = count?.plus(1)
-                    mDatabase.child(user.uid).child(date).child("Dinner").child("Total").setValue(count)
                     val menu = dinner_menuEditText.text.toString().trim(){it <= ' '}
                     val cal = dinner_calEditText.text.toString().trim(){it <= ' '}
                     if (menu.isEmpty()){
@@ -178,11 +166,13 @@ class DinnerActivity : AppCompatActivity() {
                         Log.d(TAG, "Cal was empty!")
                         return@setOnClickListener
                     }
-                    mDatabase.child(user!!.uid).child(date).child("Dinner").child(count.toString()).child("Menu").setValue(menu)
-                    mDatabase.child(user!!.uid).child(date).child("Dinner").child(count.toString()).child("Calories").setValue(cal)
-                    mDatabase.child(user!!.uid).child(date).child("Dinner").child(count.toString()).child("Date and Time").setValue(currentdate.toString())
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Menu").setValue(menu)
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Calories").setValue(cal)
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Date and Time").setValue(currentdate.toString())
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Meal").setValue("Dinner")
+                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Timestamp").setValue(timestamp)
                     Toast.makeText(this@DinnerActivity, "Add Dinner success", Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, "Add Dinner success")
+                    Log.d(TAG, "Add breakfast success")
                     mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this@DinnerActivity)
                     getLastLocation()
                     startActivity(Intent(this@DinnerActivity, HomeActivity::class.java))

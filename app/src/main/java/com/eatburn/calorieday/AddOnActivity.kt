@@ -33,5 +33,8 @@ class AddOnActivity : AppCompatActivity() {
         addOn_exercise.setOnClickListener {
             startActivity(Intent(this@AddOnActivity, ExerciseActivity::class.java))
         }
+        addOn_bookBtn.setOnClickListener{
+            startActivity(Intent(this@AddOnActivity, OnTrackActivity::class.java))
+        }
     }
 }

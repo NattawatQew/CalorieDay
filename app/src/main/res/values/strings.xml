@@ -95,4 +95,7 @@
     <string name="translate">Translate</string>
     <string name="change_color">Change Color</string>
     <string name="_8_glasses_">8 glasses</string>
+    <string name="menu_">"Menu: "</string>
+    <string name="Cal_">"Cal: "</string>
+    <string name="meal">Meal</string>
 </resources>
