@@ -86,4 +86,10 @@
     <string name="translate">เปลี่ยนภาษา</string>
     <string name="change_color">เปลี่ยนโทนสี</string>
     <string name="_8_glasses_">8 แก้ว</string>
+    <string name="menu_">"เมนู: "</string>
+    <string name="Cal_">"แคลอรี่: "</string>
+    <string name="date">"วันที่: "</string>
+    <string name="location_">"สถานที่: "</string>
+    <string name="latitude">(ละติจูด)</string>
+    <string name="longitude">(ลองจิจูด)</string>
 </resources>

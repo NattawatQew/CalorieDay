@@ -33,13 +33,13 @@ class OnTrackActivity : AppCompatActivity() {
 
     private fun generateDummyList(size: Int): List<ExampleItem> {
         val list = ArrayList<ExampleItem>()
-        for(i in 0 until size) {
+        for(i in 1 until size+1) {
             val drawable = when (i % 3) {
                 0 -> R.drawable.ic_android
                 1 -> R.drawable.ic_home_black_24dp
                 else -> R.drawable.ic_arrow_back_black_24dp
             }
-            val item = ExampleItem(drawable, "Meal $i", "Menu", "Cal")
+            val item = ExampleItem(drawable, "Breakfast", "KraPhao", "550", "Thu, 23 Apr 2020, 01:40", "37.4220004", "-122.0840154")
             list += item
         }
         return list

@@ -97,5 +97,12 @@
     <string name="_8_glasses_">8 glasses</string>
     <string name="menu_">"Menu: "</string>
     <string name="Cal_">"Cal: "</string>
-    <string name="meal">Meal</string>
+    <string name="meal" translatable="false">Meal</string>
+    <string name="date">"Date: "</string>
+    <string name="date_time" translatable="false">date and time</string>
+    <string name="location_">"Location: "</string>
+    <string name="lat" translatable="false">"Lat "</string>
+    <string name="latitude">(Latitude)</string>
+    <string name="ln_" translatable="false">"Ln "</string>
+    <string name="longitude">(Longitude)</string>
 </resources>
