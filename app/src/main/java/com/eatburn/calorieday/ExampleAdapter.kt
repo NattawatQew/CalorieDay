@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.example_item.view.*
 
 
@@ -35,8 +36,14 @@ class ExampleAdapter(private val exampleList: MutableList<ExampleItem>) : Recycl
     fun removeItem(holder: RecyclerView.ViewHolder) {
         removedPosition = holder.adapterPosition
         removedItem = exampleList[holder.adapterPosition]
+
         exampleList.removeAt(holder.adapterPosition)
         notifyItemRemoved(holder.adapterPosition)
+
+        Snackbar.make(holder.itemView, "${removedItem.meal} ${removedItem.menu} deleted.", Snackbar.LENGTH_LONG).setAction("UNDO") {
+            exampleList.add(removedPosition, removedItem)
+            notifyItemInserted(removedPosition)
+        }.show()
     }
 
     override fun getItemCount() = exampleList.size
