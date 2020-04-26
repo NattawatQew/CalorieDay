@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.example_item.view.*
 
 
-class ExampleAdapter(private val exampleList: List<ExampleItem>) : RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() {
+class ExampleAdapter(private val exampleList: MutableList<ExampleItem>) : RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() {
+
+    private var removedPosition: Int = 0
+    private lateinit var removedItem: ExampleItem
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.example_item, parent, false)
@@ -27,6 +30,13 @@ class ExampleAdapter(private val exampleList: List<ExampleItem>) : RecyclerView.
         holder.textView9.text = currrrentItem.lat
         holder.textView11.text = currrrentItem.ln
 //        holder.itemView.text_view_1.text  = currrrentItem.text1
+    }
+
+    fun removeItem(holder: RecyclerView.ViewHolder) {
+        removedPosition = holder.adapterPosition
+        removedItem = exampleList[holder.adapterPosition]
+        exampleList.removeAt(holder.adapterPosition)
+        notifyItemRemoved(holder.adapterPosition)
     }
 
     override fun getItemCount() = exampleList.size
