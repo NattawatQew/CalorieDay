@@ -1,8 +1,13 @@
 package com.eatburn.calorieday
 
 import android.content.Intent
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +15,9 @@ import kotlinx.android.synthetic.main.activity_on_track.*
 import java.text.FieldPosition
 
 class OnTrackActivity : AppCompatActivity() {
+
+    private var swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#FF6666"))
+    private lateinit var deleteIcon: Drawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +27,7 @@ class OnTrackActivity : AppCompatActivity() {
         recycler_view.adapter = ExampleAdapter(exampleList)
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
+        deleteIcon = ContextCompat.getDrawable(this, R.drawable.ic_delete)!!
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(
@@ -31,6 +40,44 @@ class OnTrackActivity : AppCompatActivity() {
 
             override fun onSwiped(holder: RecyclerView.ViewHolder, position: Int) {
                 (recycler_view.adapter as ExampleAdapter).removeItem(holder)
+            }
+
+            override fun onChildDraw(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                val itemView = viewHolder.itemView
+
+                val iconMargin = (itemView.height - deleteIcon.intrinsicHeight) / 2
+
+                if (dX > 0) {
+                    swipeBackground.setBounds(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
+                    deleteIcon.setBounds(itemView.left + iconMargin, itemView.top + iconMargin, itemView.left + iconMargin + deleteIcon.intrinsicWidth, itemView.bottom - iconMargin)
+                } else {
+                    swipeBackground.setBounds(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
+                    deleteIcon.setBounds(itemView.right - iconMargin - deleteIcon.intrinsicWidth, itemView.top + iconMargin, itemView.right - iconMargin, itemView.bottom - iconMargin)
+                }
+
+                swipeBackground.draw(c)
+
+                c.save()
+
+                if (dX > 0){
+                    c.clipRect(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
+                } else {
+                    c.clipRect(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
+                }
+
+                c.restore()
+
+                deleteIcon.draw(c)
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
             }
         }
 

@@ -131,8 +131,9 @@
                       <PersistentState>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_android" />
-                            <entry key="sourceFile" value="C:\Users\Qew Nattawat" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_delete" />
+                            <entry key="sourceFile" value="C:\Users\Qew Nattawat\Downloads\delete_forever-black-18dp.svg" />
                           </map>
                         </option>
                       </PersistentState>
