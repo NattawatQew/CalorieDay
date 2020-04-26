@@ -12,7 +12,7 @@ class OnTrackActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_on_track)
 
-        val exampleList = generateDummyList(20)
+        val exampleList = generateDummyList(5)
         recycler_view.adapter = ExampleAdapter(exampleList)
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
@@ -39,7 +39,7 @@ class OnTrackActivity : AppCompatActivity() {
                 1 -> R.drawable.ic_home_black_24dp
                 else -> R.drawable.ic_arrow_back_black_24dp
             }
-            val item = ExampleItem(drawable, "Breakfast1234", "KraPhao", "550", "Thu, 23 Apr 2020, 01:40", "37.4220004", "-122.0840154")
+            val item = ExampleItem(drawable, "Breakfast1112", "KraPhao", "550", "Thu, 23 Apr 2020, 01:40", "37.4220004", "-122.0840154")
             list += item
         }
         return list
