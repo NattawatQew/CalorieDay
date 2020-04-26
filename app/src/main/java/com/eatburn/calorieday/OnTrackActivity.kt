@@ -39,7 +39,7 @@ class OnTrackActivity : AppCompatActivity() {
                 1 -> R.drawable.ic_home_black_24dp
                 else -> R.drawable.ic_arrow_back_black_24dp
             }
-            val item = ExampleItem(drawable, "Breakfast", "KraPhao", "550", "Thu, 23 Apr 2020, 01:40", "37.4220004", "-122.0840154")
+            val item = ExampleItem(drawable, "Breakfast557", "KraPhao", "550", "Thu, 23 Apr 2020, 01:40", "37.4220004", "-122.0840154")
             list += item
         }
         return list
