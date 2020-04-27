@@ -21,6 +21,8 @@ import kotlinx.android.synthetic.main.activity_breakfast.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.concurrent.schedule
+import kotlin.concurrent.timer
 
 
 class BreakfastActivity : AppCompatActivity() {
@@ -72,8 +74,8 @@ class BreakfastActivity : AppCompatActivity() {
                         val locationListener = object : ValueEventListener {
                             override fun onCancelled(databaseError: DatabaseError) { finish() }
                             override fun onDataChange(dataSnapshot: DataSnapshot){
-                                mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Latitude").setValue(location.latitude)
-                                mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(location.longitude)
+                                mDatabase.child(user!!.uid).child("Food").child(id).child("Latitude").setValue(location.latitude)
+                                mDatabase.child(user!!.uid).child("Food").child(id).child("Longitude").setValue(location.longitude)
                             }
                         }
                         mDatabase.addListenerForSingleValueEvent(locationListener)
@@ -113,8 +115,8 @@ class BreakfastActivity : AppCompatActivity() {
             val locationListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) { finish() }
                 override fun onDataChange(dataSnapshot: DataSnapshot){
-                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Latitude").setValue(mLastLocation.latitude)
-                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(mLastLocation.longitude)
+                    mDatabase.child(user!!.uid).child("Food").child(id).child("Latitude").setValue(mLastLocation.latitude)
+                    mDatabase.child(user!!.uid).child("Food").child(id).child("Longitude").setValue(mLastLocation.longitude)
 
                 }
             }
@@ -187,16 +189,21 @@ class BreakfastActivity : AppCompatActivity() {
                             return@setOnClickListener
                         }
                         else -> {
-                            mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Menu").setValue(menu)
-                            mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Calories").setValue(cal)
-                            mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Date and Time").setValue(currentdate.toString())
-                            mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Meal").setValue("Breakfast")
-                            mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Timestamp").setValue(timestamp)
+                            mDatabase.child(user!!.uid).child("Food").child(id).child("Menu").setValue(menu)
+                            mDatabase.child(user!!.uid).child("Food").child(id).child("Calories").setValue(cal)
+                            mDatabase.child(user!!.uid).child("Food").child(id).child("Date and Time").setValue(currentdate.toString())
+                            mDatabase.child(user!!.uid).child("Food").child(id).child("Meal").setValue("Breakfast")
+                            mDatabase.child(user!!.uid).child("Food").child(id).child("Timestamp").setValue(timestamp)
                             Toast.makeText(this@BreakfastActivity, "Add breakfast success", Toast.LENGTH_SHORT).show()
                             Log.d(TAG, "Add breakfast success")
                             mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this@BreakfastActivity)
                             getLastLocation()
+//                            Timer().schedule(5000){
+//                                startActivity(Intent(this@BreakfastActivity, HomeActivity::class.java))
+//                                finish()
+//                            }
                             startActivity(Intent(this@BreakfastActivity, HomeActivity::class.java))
+                            finish()
                         }
                     }
                 }

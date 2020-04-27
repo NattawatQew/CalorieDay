@@ -51,21 +51,54 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        val df = SimpleDateFormat("EEE, d MMM yyyy, HH:mm")
         val df = SimpleDateFormat("d MM yyyy")
         val date: String = df.format(Calendar.getInstance().time)
+        var sumCal = 0
+
 
         val userInfoListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 //                get value form real time database into the string
+                var cal = dataSnapshot.child(user!!.uid).child("SumCal").child(date).value as Long?
+                if(cal == null){
+                    mDatabase.child(user!!.uid).child("SumCal").child(date).setValue(0)
+                }
                 home_nameData.text = dataSnapshot.child(user!!.uid).child("UserInfo").child("Username").getValue(
                     String::class.java)
                 home_calData.text = dataSnapshot.child(user.uid).child("Calories").child("Cal per day").getValue(
                     Double::class.java)?.toInt().toString()
-                home_waterData.text = dataSnapshot.child(user.uid).child("Water").child(date).getValue(Double::class.java)?.toInt().toString()
                 nav_profile.text = dataSnapshot.child(user!!.uid).child("UserInfo").child("Username").getValue(
                     String::class.java)
+
+                for(i in dataSnapshot.child(user.uid).child("Food").children){
+                    if(!i.exists()){
+                        sumCal = 0
+                    } else {
+                        Log.d("Calories", i.child("Calories").getValue(String::class.java).toString())
+                        Log.d("sumCal", sumCal.toString())
+                        sumCal += i.child("Calories").getValue(String::class.java).toString().toInt()
+//                        mDatabase.child(user!!.uid).child("SumCal").child(date).setValue(sumCal)
+                    }
+                }
+                for(j in dataSnapshot.child(user.uid).child("Exercise").children){
+                    if(!j.exists()){
+                        sumCal = 0
+                    } else {
+                        Log.d("Calories", j.child("Calories").getValue(String::class.java).toString())
+                        sumCal -= j.child("Calories").getValue(String::class.java).toString().toInt()
+                        Log.d("sumCal", sumCal.toString())
+
+                    }
+                }
+                home_sumCal.text = dataSnapshot.child(user!!.uid).child("SumCal").child(date).getValue(Double::class.java)?.toInt().toString()
+
+                mDatabase.child(user!!.uid).child("SumCal").child(date).setValue(sumCal)
+
             }
         }
-        mDatabase.addValueEventListener(userInfoListener)
+        mDatabase.addListenerForSingleValueEvent(userInfoListener)
+
+
+
 
         var time = currentDate.get(Calendar.HOUR_OF_DAY);//startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
 
@@ -98,10 +131,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         home_bookBtn.setOnClickListener{
             startActivity(Intent(this@HomeActivity, OnTrackActivity::class.java))
         }
+
         val waterListener = object : ValueEventListener{
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot){
 
+                home_waterData.text = dataSnapshot.child(user!!.uid).child("Water").child(date).getValue(Double::class.java)?.toInt().toString()
 
 //                pull the value from the database by using dataSnapshot and getValue
                 water = dataSnapshot.child(user!!.uid).child("Water").child(date).value as Long?
@@ -139,7 +174,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
             }
         }
-
         mDatabase.addValueEventListener(waterListener)
 
 
@@ -152,7 +186,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
+
     }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         Log.d("Drawer", "Item Clicked! ${item.itemId}")
         when (item.itemId) {

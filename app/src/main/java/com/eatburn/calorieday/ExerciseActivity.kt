@@ -73,8 +73,8 @@ class ExerciseActivity : AppCompatActivity() {
                         val locationListener = object : ValueEventListener {
                             override fun onCancelled(databaseError: DatabaseError) {}
                             override fun onDataChange(dataSnapshot: DataSnapshot){
-                                mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Latitude").setValue(location.latitude)
-                                mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(location.longitude)
+                                mDatabase.child(user!!.uid).child("Exercise").child(id).child("Latitude").setValue(location.latitude)
+                                mDatabase.child(user!!.uid).child("Exercise").child(id).child("Longitude").setValue(location.longitude)
                             }
                         }
                         mDatabase.addListenerForSingleValueEvent(locationListener)
@@ -114,8 +114,8 @@ class ExerciseActivity : AppCompatActivity() {
             val locationListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {}
                 override fun onDataChange(dataSnapshot: DataSnapshot){
-                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Latitude").setValue(mLastLocation.latitude)
-                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(mLastLocation.longitude)
+                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Latitude").setValue(mLastLocation.latitude)
+                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Longitude").setValue(mLastLocation.longitude)
                 }
             }
             mDatabase.addListenerForSingleValueEvent(locationListener)
@@ -167,11 +167,11 @@ class ExerciseActivity : AppCompatActivity() {
                         Log.d(TAG, "Cal was empty!")
                         return@setOnClickListener
                     }
-                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Menu").setValue(menu)
-                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Calories").setValue(cal)
-                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Date and Time").setValue(currentdate.toString())
-                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Meal").setValue("Exercise")
-                    mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Timestamp").setValue(timestamp)
+                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Menu").setValue(menu)
+                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Calories").setValue(cal)
+                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Date and Time").setValue(currentdate.toString())
+                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Meal").setValue("Exercise")
+                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Timestamp").setValue(timestamp)
                     Toast.makeText(this@ExerciseActivity, "Add Exercise success", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "Add breakfast success")
                     mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this@ExerciseActivity)
