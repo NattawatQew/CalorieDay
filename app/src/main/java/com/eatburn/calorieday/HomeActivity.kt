@@ -159,7 +159,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_translate -> {
                 val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
                 startActivity(intent)
-                Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Translate clicked", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_changecolor -> {
                 Toast.makeText(this, "Messages clicked", Toast.LENGTH_SHORT).show()

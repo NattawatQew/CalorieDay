@@ -11,17 +11,23 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_on_track.*
 import java.text.FieldPosition
 
 class OnTrackActivity : AppCompatActivity() {
 
+    var mAuth: FirebaseAuth? = null
     private var swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#FF6666"))
     private lateinit var deleteIcon: Drawable
+    private  lateinit var mDatabase: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_on_track)
+
+        mAuth = FirebaseAuth.getInstance()
 
         val exampleList = generateDummyList(20)
         recycler_view.adapter = ExampleAdapter(exampleList)
@@ -29,6 +35,7 @@ class OnTrackActivity : AppCompatActivity() {
         recycler_view.setHasFixedSize(true)
         deleteIcon = ContextCompat.getDrawable(this, R.drawable.ic_delete)!!
 
+//        swipe to delete
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -99,16 +106,37 @@ class OnTrackActivity : AppCompatActivity() {
     }
 
     private fun generateDummyList(size: Int): MutableList<ExampleItem> {
+
+        val user = mAuth!!.currentUser
+        mDatabase = FirebaseDatabase.getInstance().reference.child(user!!.uid).child("Food & Exercise")
         val list = ArrayList<ExampleItem>()
-        for(i in 1 until size+1) {
+        for(i in 0 until size) {
             val drawable = when (i % 3) {
                 0 -> R.drawable.ic_android
                 1 -> R.drawable.ic_home_black_24dp
                 else -> R.drawable.ic_arrow_back_black_24dp
             }
-            val item = ExampleItem(drawable, "Breakfast", "KraPhaoKai", "550", "Thu, 23 Apr 2020, 01:40", "37.4220004", "-122.0840154")
+            val item = ExampleItem(drawable, "Breakfast", "KraPhao-Kai", "550", "Thu, 23 Apr 2020, 01:40", "37.4220004", "-122.0840154")
             list.add(item)
+
+            val food_drinkListener = object : ValueEventListener{
+                override fun onCancelled(databaseError: DatabaseError) {}
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for(i in dataSnapshot.children) {
+                        val drawable = when (1 % 3) {
+                            0 -> R.drawable.ic_android
+                            1 -> R.drawable.ic_home_black_24dp
+                            else -> R.drawable.ic_arrow_back_black_24dp
+                        }
+                        val menu = i.child("Menu").getValue(String::class.java)
+                        val item = ExampleItem(drawable, "Breakfast", menu.toString(), "550", "Thu, 23 Apr 2020, 01:40", "37.4220004", "-122.0840154")
+                        list.add(item)
+                    }
+                }
+            }
+            mDatabase.addValueEventListener(food_drinkListener)
         }
         return list
     }
+
 }

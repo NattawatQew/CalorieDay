@@ -76,7 +76,7 @@ class DinnerActivity : AppCompatActivity() {
                                 mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(location.longitude)
                             }
                         }
-                        mDatabase.addValueEventListener(locationListener)
+                        mDatabase.addListenerForSingleValueEvent(locationListener)
                     }
                 }
             } else {
@@ -117,7 +117,7 @@ class DinnerActivity : AppCompatActivity() {
                     mDatabase.child(user!!.uid).child("Food & Exercise").child(id).child("Longitude").setValue(mLastLocation.longitude)
                 }
             }
-            mDatabase.addValueEventListener(locationListener)
+            mDatabase.addListenerForSingleValueEvent(locationListener)
         }
     }
 
