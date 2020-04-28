@@ -51,13 +51,20 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //        val df = SimpleDateFormat("EEE, d MMM yyyy, HH:mm")
         val df = SimpleDateFormat("d MM yyyy")
         val date: String = df.format(Calendar.getInstance().time)
+        var timestamp: Long?
         var sumCal = 0
+        val currentDatemil = Calendar.getInstance()
+        currentDatemil[Calendar.HOUR] = 0
+        currentDatemil[Calendar.MINUTE] = 0
+        currentDatemil[Calendar.SECOND] = 0
+        currentDatemil[Calendar.MILLISECOND] = 0
 
 
         val userInfoListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 //                get value form real time database into the string
+
                 var cal = dataSnapshot.child(user!!.uid).child("SumCal").child(date).value as Long?
                 if(cal == null){
                     mDatabase.child(user!!.uid).child("SumCal").child(date).setValue(0)
@@ -70,26 +77,28 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     String::class.java)
 
                 for(i in dataSnapshot.child(user.uid).child("Food").children){
+                    timestamp = i.child("Timestamp").value.toString().toLong()
+
                     if(!i.exists()){
                         sumCal = 0
-                    } else {
-                        Log.d("Calories", i.child("Calories").getValue(String::class.java).toString())
-                        Log.d("sumCal", sumCal.toString())
-                        sumCal += i.child("Calories").getValue(String::class.java).toString().toInt()
-//                        mDatabase.child(user!!.uid).child("SumCal").child(date).setValue(sumCal)
-                    }
+                    } else if (timestamp == currentDatemil.timeInMillis) {
+                            Log.d("Calories", i.child("Calories").getValue(String::class.java).toString())
+                            Log.d("sumCal", sumCal.toString())
+                            sumCal += i.child("Calories").getValue(String::class.java).toString().toInt()
+                    //                        mDatabase.child(user!!.uid).child("SumCal").child(date).setValue(sumCal)
+                        }
                 }
                 for(j in dataSnapshot.child(user.uid).child("Exercise").children){
+                    timestamp = j.child("Timestamp").value.toString().toLong()
                     if(!j.exists()){
                         sumCal = 0
-                    } else {
+                    } else if (timestamp == currentDatemil.timeInMillis) {
                         Log.d("Calories", j.child("Calories").getValue(String::class.java).toString())
                         sumCal -= j.child("Calories").getValue(String::class.java).toString().toInt()
                         Log.d("sumCal", sumCal.toString())
 
                     }
                 }
-                home_sumCal.text = dataSnapshot.child(user!!.uid).child("SumCal").child(date).getValue(Double::class.java)?.toInt().toString()
 
                 mDatabase.child(user!!.uid).child("SumCal").child(date).setValue(sumCal)
 
@@ -136,6 +145,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot){
 
+                home_sumCal.text = dataSnapshot.child(user!!.uid).child("SumCal").child(date).getValue(Double::class.java)?.toInt().toString()
                 home_waterData.text = dataSnapshot.child(user!!.uid).child("Water").child(date).getValue(Double::class.java)?.toInt().toString()
 
 //                pull the value from the database by using dataSnapshot and getValue

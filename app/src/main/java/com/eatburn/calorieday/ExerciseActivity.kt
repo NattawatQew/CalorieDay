@@ -150,7 +150,11 @@ class ExerciseActivity : AppCompatActivity() {
 //                pull the value from the database by using dataSnapshot and getValue
                 val df: DateFormat = SimpleDateFormat("EEE, d MMM yyyy, HH:mm")
                 val currentdate = df.format(Calendar.getInstance().time)
-                val timestamp: String = Calendar.getInstance().time.time.toString()
+                val  timestamp = Calendar.getInstance()
+                timestamp[Calendar.HOUR] = 0
+                timestamp[Calendar.MINUTE] = 0
+                timestamp[Calendar.SECOND] = 0
+                timestamp[Calendar.MILLISECOND] = 0
 //                val currentdate = DateFormat.getDateInstance(DateFormat.FULL).calendar.time
 
 //                TIME_DIARY.text = currentdate.toString()
@@ -171,7 +175,7 @@ class ExerciseActivity : AppCompatActivity() {
                     mDatabase.child(user!!.uid).child("Exercise").child(id).child("Calories").setValue(cal)
                     mDatabase.child(user!!.uid).child("Exercise").child(id).child("Date and Time").setValue(currentdate.toString())
                     mDatabase.child(user!!.uid).child("Exercise").child(id).child("Meal").setValue("Exercise")
-                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Timestamp").setValue(timestamp)
+                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Timestamp").setValue(timestamp.timeInMillis)
                     Toast.makeText(this@ExerciseActivity, "Add Exercise success", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "Add breakfast success")
                     mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this@ExerciseActivity)
