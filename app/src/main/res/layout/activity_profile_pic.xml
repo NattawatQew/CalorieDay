@@ -31,6 +31,7 @@
 
         <ImageView
             android:layout_width="130dp"
+            android:id="@+id/img_id"
             android:layout_height="130dp"
             android:layout_gravity="center"
             android:layout_margin="40dp"
@@ -56,6 +57,17 @@
             android:text="@string/add_custom_photo"
             android:layout_marginBottom="45dp"
             android:textColor="#123456" />
+        <TextView
+            android:id="@+id/text_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/add_custom_photo"
+            android:layout_marginBottom="45dp"
+            android:textColor="#123456"
+            android:visibility="gone"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/pic_continueBtn"

@@ -1,11 +1,16 @@
 package com.eatburn.calorieday
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
+import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -60,7 +65,12 @@ class ProfileActivity : AppCompatActivity() {
                     String::class.java)
                 result_bmiData.text = dataSnapshot.child(user.uid).child("Calories").child("BMI").getValue(
                     Double::class.java).toString()
-
+                val image = dataSnapshot.child(user.uid).child("UserInfo").child("images").getValue(String::class.java)
+                val requestOptions = RequestOptions
+                    .placeholderOf(R.drawable.user)
+                    .error(R.drawable.user)
+                val profile_img = findViewById<View>(R.id.img_profile) as ImageView
+                Glide.with(applicationContext).setDefaultRequestOptions(requestOptions).load(image).into(profile_img)
             }
         }
         mDatabase.addValueEventListener(userInfoListener)
