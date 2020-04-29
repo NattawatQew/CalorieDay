@@ -6,10 +6,14 @@ import android.provider.Settings
 import android.util.Log
 import android.view.KeyEvent
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -99,6 +103,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                     }
                 }
+
+                val image = dataSnapshot.child(user.uid).child("UserInfo").child("images").getValue(String::class.java)
+                val requestOptions = RequestOptions
+                    .placeholderOf(R.drawable.user)
+                    .error(R.drawable.user)
+                val nav_img = findViewById<View>(R.id.imageView) as ImageView
+                Glide.with(applicationContext).setDefaultRequestOptions(requestOptions).load(image).into(nav_img)
 
                 mDatabase.child(user!!.uid).child("SumCal").child(date).setValue(sumCal)
 
