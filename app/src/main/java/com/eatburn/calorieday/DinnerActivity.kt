@@ -2,31 +2,44 @@ package com.eatburn.calorieday
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
+import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_breakfast.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.OnProgressListener
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_dinner.*
+import java.io.IOException
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 class DinnerActivity : AppCompatActivity() {
 
+    //    for image
+    private val PICK_IMAGE_REQUEST = 234
+    //    for location service
     val PERMISSION_ID = 42
     val id = UUID.randomUUID().toString()
+    private var filePath: Uri? = null
 
     private fun checkPermissions(): Boolean {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -179,10 +192,66 @@ class DinnerActivity : AppCompatActivity() {
                     Log.d(TAG, "Add breakfast success")
                     mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this@DinnerActivity)
                     getLastLocation()
+                    uploadFile()
                     startActivity(Intent(this@DinnerActivity, HomeActivity::class.java))
                 }
             }
         }
         mDatabase.addValueEventListener(dinnerListener)
+
+        dinner_addimg.setOnClickListener {
+            showFileChooser()
+        }
+    }
+
+    private fun showFileChooser() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
+            filePath = data.data
+            try {
+                val bitmap =
+                    MediaStore.Images.Media.getBitmap(contentResolver, filePath)
+                dinner_img.setImageBitmap(bitmap)
+                text_hint.text = filePath?.path!!.substring(filePath?.path!!.lastIndexOf("/")+1)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun uploadFile(){
+        if(filePath != null)
+        {
+            val storage = FirebaseStorage.getInstance()
+            var storageRef = storage.reference
+            var imagesRef: StorageReference? = storageRef.child(mAuth!!.currentUser!!.uid).child("UserInfo")
+            var spaceRef = storageRef.child("images/" + mAuth?.uid.toString()+ "/" + filePath?.path!!.substring(filePath?.path!!.lastIndexOf("/")+1).toString())
+            Toast.makeText(applicationContext, "File Uploaded ", Toast.LENGTH_LONG).show();
+            spaceRef.putFile(filePath!!).addOnSuccessListener( OnSuccessListener<UploadTask.TaskSnapshot>() {
+                spaceRef.downloadUrl.addOnCompleteListener {
+                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(id).child("images").setValue(it.result.toString())
+                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(id).child("uid").setValue(id)
+                }
+            })
+                .addOnFailureListener(OnFailureListener{
+                })
+                .addOnProgressListener(OnProgressListener {
+                })
+        }
+        else
+        {
+            Toast.makeText(this, "No File Upload" , Toast.LENGTH_SHORT).show()
+        }
     }
 }
