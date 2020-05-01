@@ -80,11 +80,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         result_signOutBtn.setOnClickListener {
-            mAuth!!.signOut()
-            Toast.makeText(this, "Signed out!", Toast.LENGTH_SHORT).show()
-            Log.d(TAG, "Signed out!")
-            startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
-            finish()
+            popup()
         }
 
         profile_mygoalBtn.setOnClickListener {
@@ -109,6 +105,23 @@ class ProfileActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         if (mAuthListener != null) { mAuth!!.removeAuthStateListener { mAuthListener } }
+    }
+
+    private fun popup() {
+        val builder = android.app.AlertDialog.Builder(this)
+        with(builder)
+        {
+            setTitle(getString(R.string.alert_signout))
+            setPositiveButton(getString(R.string.confirm)) {
+                    dialog, which ->
+                startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
+                mAuth!!.signOut()
+                Toast.makeText(this@ProfileActivity, "Signed out!", Toast.LENGTH_SHORT).show()
+                Log.d(TAG, "Signed out!")
+                finish()
+            }
+            setNeutralButton(getString(R.string.cancel), null).show()
+        }
     }
 
 //    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

@@ -92,4 +92,7 @@
     <string name="location_">"สถานที่: "</string>
     <string name="latitude">(ละติจูด)</string>
     <string name="longitude">(ลองจิจูด)</string>
+    <string name="alert_signout">ต้องการที่ลงชื่อออกหรือไม่</string>
+    <string name="confirm">ยืนยัน</string>
+    <string name="cancel">ยกเลิก</string>
 </resources>
