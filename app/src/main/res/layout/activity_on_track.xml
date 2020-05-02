@@ -16,8 +16,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="100dp"
         android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        tools:listitem="@layout/example_item" />
+        android:paddingLeft="10dp" />
 
     <LinearLayout
         android:id="@+id/nav"

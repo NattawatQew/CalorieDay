@@ -14,6 +14,8 @@ import android.os.Looper
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
+import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -37,12 +39,20 @@ import kotlin.concurrent.timer
 
 class BreakfastActivity : AppCompatActivity() {
 
-//    for image
+    //    for image
     private val PICK_IMAGE_REQUEST = 234
-//    for location service
+    //    for location service
     val PERMISSION_ID = 42
-    val id = UUID.randomUUID().toString()
+
     private var filePath: Uri? = null
+    var mAuth: FirebaseAuth? = null
+    var mAuthListener: FirebaseAuth.AuthStateListener? = null
+    lateinit var mDatabase: DatabaseReference
+    lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private val TAG:String = "Breakfast Activity"
+    private var mEntryTitle: EditText? = null
+    private var mEntryContent: EditText? = null
+
 
     private fun checkPermissions(): Boolean {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -72,7 +82,7 @@ class BreakfastActivity : AppCompatActivity() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun getLastLocation() {
+    private fun getLastLocation(mKey: String) {
         val user = mAuth!!.currentUser
         if (checkPermissions()) {
             if (isLocationEnabled()) {
@@ -87,8 +97,9 @@ class BreakfastActivity : AppCompatActivity() {
                         val locationListener = object : ValueEventListener {
                             override fun onCancelled(databaseError: DatabaseError) { finish() }
                             override fun onDataChange(dataSnapshot: DataSnapshot){
-                                mDatabase.child(user!!.uid).child("Food").child(id).child("Latitude").setValue(location.latitude)
-                                mDatabase.child(user!!.uid).child("Food").child(id).child("Longitude").setValue(location.longitude)
+
+                                mDatabase.child(user!!.uid).child("Food").child(mKey).child("Latitude").setValue(location.latitude.toString())
+                                mDatabase.child(user!!.uid).child("Food").child(mKey).child("Longitude").setValue(location.longitude.toString())
                             }
                         }
                         mDatabase.addListenerForSingleValueEvent(locationListener)
@@ -128,8 +139,8 @@ class BreakfastActivity : AppCompatActivity() {
             val locationListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) { finish() }
                 override fun onDataChange(dataSnapshot: DataSnapshot){
-                    mDatabase.child(user!!.uid).child("Food").child(id).child("Latitude").setValue(mLastLocation.latitude)
-                    mDatabase.child(user!!.uid).child("Food").child(id).child("Longitude").setValue(mLastLocation.longitude)
+                    mDatabase.child(user!!.uid).child("Food").child(mDatabase.key.toString()).child("Latitude").setValue(mLastLocation.latitude)
+                    mDatabase.child(user!!.uid).child("Food").child(mDatabase.key.toString()).child("Longitude").setValue(mLastLocation.longitude)
 
                 }
             }
@@ -137,18 +148,13 @@ class BreakfastActivity : AppCompatActivity() {
         }
     }
 
-    var mAuth: FirebaseAuth? = null
-    var mAuthListener: FirebaseAuth.AuthStateListener? = null
-    lateinit var mDatabase: DatabaseReference
-    lateinit var mFusedLocationClient: FusedLocationProviderClient
-    private val TAG:String = "Breakfast Activity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_breakfast)
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
-
+        var mKey = mDatabase.database.reference.push().key.toString()
         val user = mAuth!!.currentUser
 
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
@@ -159,24 +165,8 @@ class BreakfastActivity : AppCompatActivity() {
             }
         }
 
-//        breakfast_submitBtn.setOnClickListener {
-//            val menu = breakfast_menuEditText.text.toString().trim(){it <= ' '}
-//            val cal = breakfast_calEditText.text.toString().trim(){it <= ' '}
-//            if (menu.isEmpty()){
-//                Toast.makeText(this, "Please enter your Menu.", Toast.LENGTH_SHORT).show()
-//                Log.d(TAG, "Menu was empty!")
-//                return@setOnClickListener
-//            }
-//            if (cal.isEmpty()){
-//                Toast.makeText(this, "Please enter your Calories.", Toast.LENGTH_SHORT).show()
-//                Log.d(TAG, "Cal was empty!")
-//                return@setOnClickListener
-//            }
-//            mDatabase.child(user!!.uid).child(date).child("Breakfast").child(count.toString()).child("Menu").setValue(menu)
-//            mDatabase.child(user!!.uid).child(date).child("Breakfast").child(count.toString()).child("Calories").setValue(cal)
-//            startActivity(Intent(this@BreakfastActivity, HomeActivity::class.java))
-//        }
-
+        mEntryTitle = findViewById<View>(R.id.breakfast_menuEditText) as EditText
+        mEntryContent = findViewById<View>(R.id.breakfast_calEditText) as EditText
         val breakfastListener = object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot){
@@ -193,8 +183,8 @@ class BreakfastActivity : AppCompatActivity() {
 
 //                TIME_DIARY.text = currentdate.toString()
                 breakfast_submitBtn.setOnClickListener {
-                    val menu = breakfast_menuEditText.text.toString().trim(){it <= ' '}
-                    val cal = breakfast_calEditText.text.toString().trim(){it <= ' '}
+                    val menu = mEntryTitle!!.text.toString().trim{ it <= ' '}
+                    val cal = mEntryContent!!.text.toString().trim{ it <= ' '}
                     when {
                         menu.isEmpty() -> {
                             Toast.makeText(this@BreakfastActivity, "Please enter your Menu.", Toast.LENGTH_SHORT).show()
@@ -207,20 +197,18 @@ class BreakfastActivity : AppCompatActivity() {
                             return@setOnClickListener
                         }
                         else -> {
-                            mDatabase.child(user!!.uid).child("Food").child(id).child("Menu").setValue(menu)
-                            mDatabase.child(user!!.uid).child("Food").child(id).child("Calories").setValue(cal)
-                            mDatabase.child(user!!.uid).child("Food").child(id).child("Date and Time").setValue(currentdate.toString())
-                            mDatabase.child(user!!.uid).child("Food").child(id).child("Meal").setValue("Breakfast")
-                            mDatabase.child(user!!.uid).child("Food").child(id).child("Timestamp").setValue(timestamp.timeInMillis)
+                            mDatabase.child(user!!.uid).child("Food").child(mKey).child("Menu").setValue(menu.toString())
+                            mDatabase.child(user!!.uid).child("Food").child(mKey).child("Calories").setValue(cal.toString())
+                            mDatabase.child(user!!.uid).child("Food").child(mKey).child("Date_and_Time").setValue(currentdate.toString())
+                            mDatabase.child(user!!.uid).child("Food").child(mKey).child("Meal").setValue("Breakfast".toString())
+                            mDatabase.child(user!!.uid).child("Food").child(mKey).child("Timestamp").setValue(timestamp.timeInMillis.toString())
+                            mDatabase.child(user!!.uid).child("Food").child(mKey).child("mKey").setValue(mKey.toString())
+                            mDatabase.child(user!!.uid).child("Food").child(mKey).child("uid").setValue(mAuth!!.currentUser!!.uid.toString())
                             Toast.makeText(this@BreakfastActivity, "Add breakfast success", Toast.LENGTH_SHORT).show()
                             Log.d(TAG, "Add breakfast success")
                             mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this@BreakfastActivity)
-                            getLastLocation()
-//                            Timer().schedule(5000){
-//                                startActivity(Intent(this@BreakfastActivity, HomeActivity::class.java))
-//                                finish()
-//                            }
-                            uploadFile()
+                            getLastLocation(mKey)
+                            uploadFile(mKey)
                             startActivity(Intent(this@BreakfastActivity, HomeActivity::class.java))
                             finish()
                         }
@@ -261,18 +249,17 @@ class BreakfastActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadFile(){
+    private fun uploadFile(mKey:String){
         if(filePath != null)
         {
             val storage = FirebaseStorage.getInstance()
             var storageRef = storage.reference
-            var imagesRef: StorageReference? = storageRef.child(mAuth!!.currentUser!!.uid).child("UserInfo")
             var spaceRef = storageRef.child("images/" + mAuth?.uid.toString()+ "/" + filePath?.path!!.substring(filePath?.path!!.lastIndexOf("/")+1).toString())
             Toast.makeText(applicationContext, "File Uploaded ", Toast.LENGTH_LONG).show();
             spaceRef.putFile(filePath!!).addOnSuccessListener( OnSuccessListener<UploadTask.TaskSnapshot>() {
                 spaceRef.downloadUrl.addOnCompleteListener {
-                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(id).child("images").setValue(it.result.toString())
-                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(id).child("uid").setValue(id)
+                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(mKey).child("images").setValue(it.result.toString())
+                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(mKey).child("uid").setValue(mDatabase.key.toString())
                 }
             })
                 .addOnFailureListener(OnFailureListener{

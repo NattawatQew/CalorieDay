@@ -41,6 +41,12 @@ class ExerciseActivity : AppCompatActivity() {
     val id = UUID.randomUUID().toString()
     private var filePath: Uri? = null
 
+    var mAuth: FirebaseAuth? = null
+    var mAuthListener: FirebaseAuth.AuthStateListener? = null
+    lateinit var mDatabase: DatabaseReference
+    lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private val TAG:String = "Exercise Activity"
+
     private fun checkPermissions(): Boolean {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
@@ -69,7 +75,7 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun getLastLocation() {
+    private fun getLastLocation(mKey: String) {
         val user = mAuth!!.currentUser
         val date: String = Calendar.getInstance().time.time.toString()
         if (checkPermissions()) {
@@ -85,8 +91,8 @@ class ExerciseActivity : AppCompatActivity() {
                         val locationListener = object : ValueEventListener {
                             override fun onCancelled(databaseError: DatabaseError) {}
                             override fun onDataChange(dataSnapshot: DataSnapshot){
-                                mDatabase.child(user!!.uid).child("Exercise").child(id).child("Latitude").setValue(location.latitude)
-                                mDatabase.child(user!!.uid).child("Exercise").child(id).child("Longitude").setValue(location.longitude)
+                                mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Latitude").setValue(location.latitude.toString())
+                                mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Longitude").setValue(location.longitude.toString())
                             }
                         }
                         mDatabase.addListenerForSingleValueEvent(locationListener)
@@ -126,19 +132,14 @@ class ExerciseActivity : AppCompatActivity() {
             val locationListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {}
                 override fun onDataChange(dataSnapshot: DataSnapshot){
-                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Latitude").setValue(mLastLocation.latitude)
-                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Longitude").setValue(mLastLocation.longitude)
+                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Latitude").setValue(mLastLocation.latitude.toString())
+                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Longitude").setValue(mLastLocation.longitude.toString())
                 }
             }
             mDatabase.addListenerForSingleValueEvent(locationListener)
         }
     }
 
-    var mAuth: FirebaseAuth? = null
-    var mAuthListener: FirebaseAuth.AuthStateListener? = null
-    lateinit var mDatabase: DatabaseReference
-    lateinit var mFusedLocationClient: FusedLocationProviderClient
-    private val TAG:String = "Exercise Activity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,6 +147,7 @@ class ExerciseActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
 
+        var mKey = mDatabase.database.reference.push().key.toString()
         val user = mAuth!!.currentUser
 
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
@@ -183,16 +185,16 @@ class ExerciseActivity : AppCompatActivity() {
                         Log.d(TAG, "Cal was empty!")
                         return@setOnClickListener
                     }
-                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Menu").setValue(menu)
-                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Calories").setValue(cal)
-                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Date and Time").setValue(currentdate.toString())
-                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Meal").setValue("Exercise")
-                    mDatabase.child(user!!.uid).child("Exercise").child(id).child("Timestamp").setValue(timestamp.timeInMillis)
+                    mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Menu").setValue(menu.toString())
+                    mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Calories").setValue(cal.toString())
+                    mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Date_and_Time").setValue(currentdate.toString())
+                    mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Meal").setValue("Exercise".toString())
+                    mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Timestamp").setValue(timestamp.timeInMillis.toString())
                     Toast.makeText(this@ExerciseActivity, "Add Exercise success", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "Add breakfast success")
                     mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this@ExerciseActivity)
-                    getLastLocation()
-                    uploadFile()
+                    getLastLocation(mKey)
+                    uploadFile(mKey)
                     startActivity(Intent(this@ExerciseActivity, HomeActivity::class.java))
                 }
             }
@@ -230,7 +232,7 @@ class ExerciseActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadFile(){
+    private fun uploadFile(mKey:String){
         if(filePath != null)
         {
             val storage = FirebaseStorage.getInstance()
@@ -240,8 +242,8 @@ class ExerciseActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "File Uploaded ", Toast.LENGTH_LONG).show();
             spaceRef.putFile(filePath!!).addOnSuccessListener( OnSuccessListener<UploadTask.TaskSnapshot>() {
                 spaceRef.downloadUrl.addOnCompleteListener {
-                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Exercise").child(id).child("images").setValue(it.result.toString())
-                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Exercise").child(id).child("uid").setValue(id)
+                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Exercise").child(mKey).child("images").setValue(it.result.toString())
+                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Exercise").child(mKey).child("uid").setValue(mDatabase.key.toString())
                 }
             })
                 .addOnFailureListener(OnFailureListener{

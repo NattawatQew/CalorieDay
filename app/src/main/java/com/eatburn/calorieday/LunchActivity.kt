@@ -42,6 +42,12 @@ class LunchActivity : AppCompatActivity() {
     val PERMISSION_ID = 42
     val id = UUID.randomUUID().toString()
     private var filePath: Uri? = null
+    var mAuth: FirebaseAuth? = null
+    var mAuthListener: FirebaseAuth.AuthStateListener? = null
+    lateinit var mDatabase: DatabaseReference
+    lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private val TAG:String = "Lunch Activity"
+
 
     private fun checkPermissions(): Boolean {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -71,7 +77,7 @@ class LunchActivity : AppCompatActivity() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun getLastLocation() {
+    private fun getLastLocation(mKey:String) {
         val user = mAuth!!.currentUser
         val date: String = Calendar.getInstance().time.time.toString()
         if (checkPermissions()) {
@@ -87,8 +93,8 @@ class LunchActivity : AppCompatActivity() {
                         val locationListener = object : ValueEventListener {
                             override fun onCancelled(databaseError: DatabaseError) {}
                             override fun onDataChange(dataSnapshot: DataSnapshot){
-                                mDatabase.child(user!!.uid).child("Food").child(id).child("Latitude").setValue(location.latitude)
-                                mDatabase.child(user!!.uid).child("Food").child(id).child("Longitude").setValue(location.longitude)
+                                mDatabase.child(user!!.uid).child("Food").child(mKey).child("Latitude").setValue(location.latitude.toString())
+                                mDatabase.child(user!!.uid).child("Food").child(mKey).child("Longitude").setValue(location.longitude.toString())
                             }
                         }
                         mDatabase.addListenerForSingleValueEvent(locationListener)
@@ -128,26 +134,20 @@ class LunchActivity : AppCompatActivity() {
             val locationListener = object : ValueEventListener {
                 override fun onCancelled(databaseError: DatabaseError) {}
                 override fun onDataChange(dataSnapshot: DataSnapshot){
-                    mDatabase.child(user!!.uid).child("Food").child(id).child("Latitude").setValue(mLastLocation.latitude)
-                    mDatabase.child(user!!.uid).child("Food").child(id).child("Longitude").setValue(mLastLocation.longitude)
+                    mDatabase.child(user!!.uid).child("Food").child(mDatabase.key.toString()).child("Latitude").setValue(mLastLocation.latitude.toString())
+                    mDatabase.child(user!!.uid).child("Food").child(mDatabase.key.toString()).child("Longitude").setValue(mLastLocation.longitude.toString())
                 }
             }
             mDatabase.addListenerForSingleValueEvent(locationListener)
         }
     }
 
-    var mAuth: FirebaseAuth? = null
-    var mAuthListener: FirebaseAuth.AuthStateListener? = null
-    lateinit var mDatabase: DatabaseReference
-    lateinit var mFusedLocationClient: FusedLocationProviderClient
-    private val TAG:String = "Lunch Activity"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lunch)
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
-
+        var mKey = mDatabase.database.reference.push().key.toString()
         val user = mAuth!!.currentUser
 
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
@@ -185,16 +185,17 @@ class LunchActivity : AppCompatActivity() {
                         Log.d(TAG, "Cal was empty!")
                         return@setOnClickListener
                     }
-                    mDatabase.child(user!!.uid).child("Food").child(id).child("Menu").setValue(menu)
-                    mDatabase.child(user!!.uid).child("Food").child(id).child("Calories").setValue(cal)
-                    mDatabase.child(user!!.uid).child("Food").child(id).child("Date and Time").setValue(currentdate.toString())
-                    mDatabase.child(user!!.uid).child("Food").child(id).child("Meal").setValue("Lunch")
-                    mDatabase.child(user!!.uid).child("Food").child(id).child("Timestamp").setValue(timestamp.timeInMillis)
+                    mDatabase.child(user!!.uid).child("Food").child(mKey).child("Menu").setValue(menu.toString())
+                    mDatabase.child(user!!.uid).child("Food").child(mKey).child("Calories").setValue(cal.toString())
+                    mDatabase.child(user!!.uid).child("Food").child(mKey).child("Date_and_Time").setValue(currentdate.toString())
+                    mDatabase.child(user!!.uid).child("Food").child(mKey).child("Meal").setValue("Lunch".toString())
+                    mDatabase.child(user!!.uid).child("Food").child(mKey).child("mKey").setValue(mKey.toString())
+                    mDatabase.child(user!!.uid).child("Food").child(mKey).child("Timestamp").setValue(timestamp.timeInMillis)
                     Toast.makeText(this@LunchActivity, "Add Lunch success", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "Add breakfast success")
                     mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this@LunchActivity)
-                    getLastLocation()
-                    uploadFile()
+                    getLastLocation(mKey)
+                    uploadFile(mKey)
                     startActivity(Intent(this@LunchActivity, HomeActivity::class.java))
                 }
             }
@@ -232,7 +233,7 @@ class LunchActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadFile(){
+    private fun uploadFile(mKey:String){
         if(filePath != null)
         {
             val storage = FirebaseStorage.getInstance()
@@ -242,8 +243,8 @@ class LunchActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "File Uploaded ", Toast.LENGTH_LONG).show();
             spaceRef.putFile(filePath!!).addOnSuccessListener( OnSuccessListener<UploadTask.TaskSnapshot>() {
                 spaceRef.downloadUrl.addOnCompleteListener {
-                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(id).child("images").setValue(it.result.toString())
-                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(id).child("uid").setValue(id)
+                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(mKey).child("images").setValue(it.result.toString())
+                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(mKey).child("uid").setValue(mDatabase.key.toString())
                 }
             })
                 .addOnFailureListener(OnFailureListener{
