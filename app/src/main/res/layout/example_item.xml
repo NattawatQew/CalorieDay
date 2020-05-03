@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="4dp">
-
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
     <RelativeLayout
 
         android:layout_width="match_parent"
         android:background="@color/colorVeryLightPurple"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <ImageView
             android:layout_centerVertical="true"
-            android:id="@+id/image_view"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:id="@+id/image_view1"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/ic_android"/>
 
@@ -26,7 +28,7 @@
             android:layout_marginBottom="3dp"
             android:layout_height="wrap_content"
             android:text="@string/meal"
-            android:layout_toEndOf="@+id/image_view"
+            android:layout_toEndOf="@+id/image_view1"
             android:textColor="#555555"
             android:textSize="18sp"
             android:textStyle="bold"/>
@@ -37,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="@string/menu_"
             android:textSize="15sp"
-            android:layout_toEndOf="@id/image_view"
+            android:layout_toEndOf="@id/image_view1"
             android:textColor="#555555"
             android:layout_marginBottom="3dp"
             android:layout_below="@id/text_view_1"/>
@@ -80,7 +82,7 @@
             android:text="@string/date"
             android:layout_marginBottom="3dp"
             android:textSize="15sp"
-            android:layout_toEndOf="@id/image_view"
+            android:layout_toEndOf="@id/image_view1"
             android:textColor="#555555"
             android:layout_below="@id/text_view_2"/>
 
@@ -100,9 +102,10 @@
             android:layout_height="wrap_content"
             android:text="@string/location_"
             android:textSize="15sp"
-            android:layout_toEndOf="@id/image_view"
+            android:layout_toEndOf="@id/image_view1"
             android:textColor="#555555"
             android:layout_below="@id/text_view_6"/>
+
 
         <TextView
             android:id="@+id/text_view_9"
@@ -145,9 +148,33 @@
             android:layout_toEndOf="@id/text_view_8"
             android:textColor="#555555"
             android:layout_below="@id/text_view_10"/>
+        <TextView
+            android:id="@+id/mKey_Ontrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
+        <TextView
+            android:id="@+id/mImage_Ontrack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
+        <TextView
+            android:id="@+id/Location_Food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/image_view1"
+            android:layout_below="@id/text_view_11"
+            android:text="@string/address" />
 
+        <TextView
+            android:id="@+id/Location_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/Location_Food"
+            android:layout_below="@id/text_view_11"
+            android:text="@string/address" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

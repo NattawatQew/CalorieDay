@@ -4,25 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="bottom"
     tools:context=".OnTrackActivity">
 
     <androidx.recyclerview.widget.RecyclerView
 
-        android:id="@+id/recycler_view"
+        android:id="@+id/recycler_view1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingTop="10dp"
-        android:paddingBottom="100dp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp" />
+        android:paddingBottom="100dp">
+    </androidx.recyclerview.widget.RecyclerView>
+
 
     <LinearLayout
         android:id="@+id/nav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/recycler_view"
+        android:layout_alignBottom="@id/recycler_view1"
+        android:gravity="bottom"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="5dp">
 

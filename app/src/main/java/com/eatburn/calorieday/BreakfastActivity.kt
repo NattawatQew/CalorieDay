@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.MediaStore
 import android.provider.Settings
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -258,8 +259,10 @@ class BreakfastActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "File Uploaded ", Toast.LENGTH_LONG).show();
             spaceRef.putFile(filePath!!).addOnSuccessListener( OnSuccessListener<UploadTask.TaskSnapshot>() {
                 spaceRef.downloadUrl.addOnCompleteListener {
+
+
                     mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(mKey).child("images").setValue(it.result.toString())
-                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(mKey).child("uid").setValue(mDatabase.key.toString())
+                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(mKey).child("uid").setValue(mAuth!!.currentUser!!.uid.toString())
                 }
             })
                 .addOnFailureListener(OnFailureListener{
@@ -269,6 +272,7 @@ class BreakfastActivity : AppCompatActivity() {
         }
         else
         {
+            mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Food").child(mKey).child("images").setValue("null")
             Toast.makeText(this, "No File Upload" , Toast.LENGTH_SHORT).show()
         }
     }

@@ -8,6 +8,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -85,15 +86,18 @@ class ProfileActivity : AppCompatActivity() {
 
         profile_mygoalBtn.setOnClickListener {
             startActivity(Intent(this@ProfileActivity, MyGoalActivity::class.java))
+            finish()
         }
         profile_homeBtn.setOnClickListener {
             startActivity(Intent(this@ProfileActivity, HomeActivity::class.java))
+            finish()
         }
         profile_addBtn.setOnClickListener {
             startActivity(Intent(this@ProfileActivity, AddOnActivity::class.java))
+            finish()
         }
         profile_bookBtn.setOnClickListener{
-            startActivity(Intent(this@ProfileActivity, OnTrackActivity::class.java))
+            Dialog_Choice()
         }
     }
 
@@ -122,6 +126,32 @@ class ProfileActivity : AppCompatActivity() {
             }
             setNeutralButton(getString(R.string.cancel), null).show()
         }
+    }
+
+    private fun Dialog_Choice() {
+        val builder = AlertDialog.Builder(this@ProfileActivity)
+        builder.setTitle(getString(R.string.food_ex))
+        // Display a message on alert dialog
+        builder.setMessage(getString(R.string.popup_choice))
+        builder.setPositiveButton(getString(R.string.food)){ dialog, which ->
+            startActivity(Intent(this@ProfileActivity, OnTrackActivity::class.java))
+            finish()
+        }
+        // Display a negative button on alert dialog
+        builder.setNegativeButton(getString(R.string.ex)){ dialog, which ->
+            startActivity(Intent(this@ProfileActivity, OnExerciseActivity::class.java))
+            finish()
+        }
+        // Display a neutral button on alert dialog
+        builder.setNeutralButton(R.string.cancel){_,_ ->
+            Toast.makeText(applicationContext,
+                R.string.cancel, Toast.LENGTH_SHORT).show()
+        }
+        // Display the alert dialog on app interface
+        val dialog: AlertDialog = builder.create()
+        dialog.setIcon(R.mipmap.ic_launcher)
+        dialog.show()
+        return
     }
 
 //    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

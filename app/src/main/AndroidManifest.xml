@@ -41,6 +41,8 @@
         <activity android:name=".HelthInfoActivity" />
         <activity android:name=".GoalWeightActivity" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".OnExerciseActivity" />
+
     </application>
 
 </manifest>

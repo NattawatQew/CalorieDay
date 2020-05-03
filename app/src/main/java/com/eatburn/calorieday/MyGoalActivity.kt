@@ -2,6 +2,8 @@ package com.eatburn.calorieday
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -62,16 +64,45 @@ class MyGoalActivity : AppCompatActivity() {
 
         mygoal_profileBtn.setOnClickListener {
             startActivity(Intent(this@MyGoalActivity, ProfileActivity::class.java))
+            finish()
         }
         mygoal_homeBtn.setOnClickListener {
             startActivity(Intent(this@MyGoalActivity, HomeActivity::class.java))
+            finish()
         }
         mygoal_addBtn.setOnClickListener {
             startActivity(Intent(this@MyGoalActivity, AddOnActivity::class.java))
+            finish()
         }
         mygoal_bookBtn.setOnClickListener{
-            startActivity(Intent(this@MyGoalActivity, OnTrackActivity::class.java))
+            Dialog_Choice()
         }
+    }
+
+    private fun Dialog_Choice() {
+        val builder = AlertDialog.Builder(this@MyGoalActivity)
+        builder.setTitle(getString(R.string.food_ex))
+        // Display a message on alert dialog
+        builder.setMessage(getString(R.string.popup_choice))
+        builder.setPositiveButton(getString(R.string.food)){ dialog, which ->
+            startActivity(Intent(this@MyGoalActivity, OnTrackActivity::class.java))
+            finish()
+        }
+        // Display a negative button on alert dialog
+        builder.setNegativeButton(getString(R.string.ex)){ dialog, which ->
+            startActivity(Intent(this@MyGoalActivity, OnExerciseActivity::class.java))
+            finish()
+        }
+        // Display a neutral button on alert dialog
+        builder.setNeutralButton(R.string.cancel){_,_ ->
+            Toast.makeText(applicationContext,
+                R.string.cancel, Toast.LENGTH_SHORT).show()
+        }
+        // Display the alert dialog on app interface
+        val dialog: AlertDialog = builder.create()
+        dialog.setIcon(R.mipmap.ic_launcher)
+        dialog.show()
+        return
     }
 }
 

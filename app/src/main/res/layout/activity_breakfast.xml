@@ -118,5 +118,11 @@
         app:backgroundTint="@color/colorPurple"
         android:layout_gravity="center_horizontal"
         android:text="@string/submit" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/gps"
+        android:text=""
+        android:visibility="visible"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

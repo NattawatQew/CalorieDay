@@ -14,6 +14,7 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.MediaStore
 import android.provider.Settings
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -189,6 +190,8 @@ class ExerciseActivity : AppCompatActivity() {
                     mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Calories").setValue(cal.toString())
                     mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Date_and_Time").setValue(currentdate.toString())
                     mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Meal").setValue("Exercise".toString())
+                    mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("mKey").setValue(mKey.toString())
+                    mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("uid").setValue(mAuth!!.currentUser!!.uid.toString())
                     mDatabase.child(user!!.uid).child("Exercise").child(mKey).child("Timestamp").setValue(timestamp.timeInMillis.toString())
                     Toast.makeText(this@ExerciseActivity, "Add Exercise success", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "Add breakfast success")
@@ -242,8 +245,9 @@ class ExerciseActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "File Uploaded ", Toast.LENGTH_LONG).show();
             spaceRef.putFile(filePath!!).addOnSuccessListener( OnSuccessListener<UploadTask.TaskSnapshot>() {
                 spaceRef.downloadUrl.addOnCompleteListener {
+
                     mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Exercise").child(mKey).child("images").setValue(it.result.toString())
-                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Exercise").child(mKey).child("uid").setValue(mDatabase.key.toString())
+                    mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Exercise").child(mKey).child("uid").setValue(mAuth!!.currentUser!!.uid.toString())
                 }
             })
                 .addOnFailureListener(OnFailureListener{
@@ -253,6 +257,7 @@ class ExerciseActivity : AppCompatActivity() {
         }
         else
         {
+            mDatabase!!.child(mAuth!!.currentUser!!.uid).child("Exercise").child(mKey).child("images").setValue("null")
             Toast.makeText(this, "No File Upload" , Toast.LENGTH_SHORT).show()
         }
     }

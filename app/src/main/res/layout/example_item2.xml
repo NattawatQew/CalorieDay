@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:background="@color/colorVeryLightPurple"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/image_view"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_android"/>
+
+        <TextView
+            android:id="@+id/text_view_1"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_height="wrap_content"
+            android:text="@string/meal"
+            android:layout_toEndOf="@+id/image_view"
+            android:textColor="#555555"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/text_view_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_activity"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/image_view"
+            android:textColor="#555555"
+            android:layout_marginBottom="3dp"
+            android:layout_below="@id/text_view_1"/>
+
+        <TextView
+            android:id="@+id/text_view_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/text_view_2"
+            android:textColor="#555555"
+            android:layout_below="@id/text_view_1"/>
+
+        <TextView
+            android:id="@+id/text_view_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Cal_"
+            android:layout_marginStart="30dp"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/text_view_3"
+            android:textColor="#555555"
+            android:layout_below="@id/text_view_1"/>
+
+        <TextView
+            android:id="@+id/text_view_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cal"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/text_view_4"
+            android:textColor="#555555"
+            android:layout_below="@id/text_view_1"/>
+
+        <TextView
+            android:id="@+id/text_view_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date"
+            android:layout_marginBottom="3dp"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/image_view"
+            android:textColor="#555555"
+            android:layout_below="@id/text_view_2"/>
+
+        <TextView
+            android:id="@+id/text_view_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date_time"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/text_view_6"
+            android:textColor="#555555"
+            android:layout_below="@id/text_view_2"/>
+
+        <TextView
+            android:id="@+id/text_view_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location_"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/image_view"
+            android:textColor="#555555"
+            android:layout_below="@id/text_view_6"/>
+
+        <TextView
+            android:id="@+id/text_view_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lat"
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/text_view_10"
+            android:textColor="#555555"
+            android:layout_below="@id/text_view_6"/>
+
+        <TextView
+            android:id="@+id/text_view_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/latitude"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/text_view_8"
+            android:textColor="#555555"
+            android:layout_below="@id/text_view_6"/>
+
+        <TextView
+            android:id="@+id/text_view_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ln_"
+            android:layout_marginStart="5dp"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/text_view_12"
+            android:textColor="#555555"
+            android:layout_below="@id/text_view_9"/>
+
+        <TextView
+            android:id="@+id/text_view_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/longitude"
+            android:textSize="15sp"
+            android:layout_toEndOf="@id/text_view_8"
+            android:textColor="#555555"
+            android:layout_below="@id/text_view_10"/>
+        <TextView
+            android:id="@+id/mKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/mImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/Location_Food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/image_view"
+            android:layout_below="@id/text_view_11"
+            android:text="@string/address" />
+
+        <TextView
+            android:id="@+id/Location_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/Location_Food"
+            android:layout_below="@id/text_view_11"
+            android:text="@string/address" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

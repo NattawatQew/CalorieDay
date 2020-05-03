@@ -1,6 +1,7 @@
 package com.eatburn.calorieday
 
 import android.content.Context
+import android.location.Geocoder
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -16,8 +17,10 @@ class ExampleAdapter(private var holder: View) : RecyclerView.ViewHolder(holder)
         val no_img = RequestOptions.placeholderOf(R.mipmap.ic_launcher_round)
             .error(R.mipmap.ic_launcher_round)
         val show_img = holder.findViewById<View>(R.id.image_view) as ImageView
-        Glide.with(context).setDefaultRequestOptions(no_img).load(img).into(show_img)
+        val image_txt : TextView? = holder.findViewById(R.id.mImage_Ontrack) as? TextView
         Log.d("img",img.toString())
+            Glide.with(context).setDefaultRequestOptions(no_img).load(img).into(show_img)
+
     }
 
     fun setMeal(meal: String?){
@@ -40,13 +43,24 @@ class ExampleAdapter(private var holder: View) : RecyclerView.ViewHolder(holder)
         show_date.text = date
     }
 
-    fun setLatitude(lat: String?){
+    fun setLatitude(context: Context,lat: String?){
         val show_lat = holder.findViewById<View>(R.id.text_view_9) as TextView
         show_lat.text = lat
+
     }
 
-    fun setLongitude(ln: String?){
+    fun setLongitude(context: Context,ln: String?){
+        val show_lat = holder.findViewById<View>(R.id.text_view_9) as TextView
         val show_ln = holder.findViewById<View>(R.id.text_view_11) as TextView
         show_ln.text = ln
+        val geocoder: Geocoder = Geocoder(context)
+        val Address = holder.findViewById<View>(R.id.Location_data) as TextView
+        val list = geocoder.getFromLocation(show_lat.text.toString().toDouble(),show_ln.text.toString().toDouble(),1)
+        Address.text = list.get(0).getAddressLine(0)
+    }
+    fun mKey(key: String?)
+    {
+        val FirebaseKey : TextView = holder.findViewById(R.id.mKey) as TextView
+        FirebaseKey.text = key
     }
 }

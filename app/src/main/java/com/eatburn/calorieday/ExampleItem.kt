@@ -9,6 +9,7 @@ class ExampleItem{
     var Date_and_Time: String? = null
     var Latitude: String? = null
     var Longitude: String? = null
+    var mKey: String? = null
 
     constructor(
         images: String?,
@@ -17,7 +18,8 @@ class ExampleItem{
         Calories: String?,
         Date_and_Time: String?,
         Latitude: String?,
-        Longitude: String?
+        Longitude: String?,
+        mKey: String?
     ) {
         this.images = images
         this.Meal = Meal
@@ -26,6 +28,7 @@ class ExampleItem{
         this.Date_and_Time = Date_and_Time
         this.Latitude = Latitude
         this.Longitude = Longitude
+        this.mKey = mKey
     }
 
     constructor() {}

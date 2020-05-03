@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -149,7 +150,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             startActivity(Intent(this@HomeActivity, AddOnActivity::class.java))
         }
         home_bookBtn.setOnClickListener{
-            startActivity(Intent(this@HomeActivity, OnTrackActivity::class.java))
+            Dialog_Choice()
         }
 
         val waterListener = object : ValueEventListener{
@@ -244,5 +245,32 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var multiplier = 1.0
         repeat(decimals) { multiplier *= 10 }
         return kotlin.math.round(this * multiplier) / multiplier
+    }
+
+    private fun Dialog_Choice() {
+        val builder = AlertDialog.Builder(this@HomeActivity)
+        builder.setTitle(getString(R.string.food_ex))
+        // Display a message on alert dialog
+        builder.setMessage(getString(R.string.popup_choice))
+        builder.setPositiveButton(getString(R.string.food)){ dialog, which ->
+            startActivity(Intent(this@HomeActivity, OnTrackActivity::class.java))
+            finish()
+        }
+        // Display a negative button on alert dialog
+        builder.setNegativeButton(getString(R.string.ex)){ dialog, which ->
+            startActivity(Intent(this@HomeActivity, OnExerciseActivity::class.java))
+            finish()
+        }
+        // Display a neutral button on alert dialog
+        builder.setNeutralButton(R.string.cancel){_,_ ->
+            Toast.makeText(applicationContext,
+                R.string.cancel, Toast.LENGTH_SHORT).show()
+        }
+        // Display the alert dialog on app interface
+        val dialog: AlertDialog = builder.create()
+        dialog.setIcon(R.mipmap.ic_launcher)
+        dialog.show()
+        return
+
     }
 }
