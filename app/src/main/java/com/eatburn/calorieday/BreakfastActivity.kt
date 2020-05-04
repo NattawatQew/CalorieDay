@@ -110,6 +110,7 @@ class BreakfastActivity : AppCompatActivity() {
                 Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show()
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                 startActivity(intent)
+                finish()
             }
         } else {
             requestPermissions()
@@ -176,7 +177,7 @@ class BreakfastActivity : AppCompatActivity() {
                 val currentdate = df.format(Calendar.getInstance().time)
 
                 val  timestamp = Calendar.getInstance()
-                timestamp[Calendar.HOUR] = 0
+                timestamp[Calendar.HOUR_OF_DAY] = 0
                 timestamp[Calendar.MINUTE] = 0
                 timestamp[Calendar.SECOND] = 0
                 timestamp[Calendar.MILLISECOND] = 0

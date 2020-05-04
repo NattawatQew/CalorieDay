@@ -28,11 +28,13 @@ class GenderActivity : AppCompatActivity() {
 //            add new value to the database (.child means sub table)
             mDatabase.child(uid).child("UserInfo").child("Gender").setValue("Male")
             startActivity(Intent(this@GenderActivity, ProfilePicActivity::class.java))
+            finish()
         }
 //        For female
         female_btn.setOnClickListener{
             mDatabase.child(uid).child("UserInfo").child("Gender").setValue("Female")
             startActivity(Intent(this@GenderActivity, ProfilePicActivity::class.java))
+            finish()
         }
     }
 

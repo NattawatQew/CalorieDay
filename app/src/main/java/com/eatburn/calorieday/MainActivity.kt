@@ -3,6 +3,7 @@ package com.eatburn.calorieday
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -43,7 +44,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) { moveTaskToBack(true) }
+        return super.onKeyDown(keyCode, event)
+    }
 
 }
 

@@ -59,7 +59,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var timestamp: Long?
         var sumCal = 0
         val currentDatemil = Calendar.getInstance()
-        currentDatemil[Calendar.HOUR] = 0
+        currentDatemil[Calendar.HOUR_OF_DAY] = 0
         currentDatemil[Calendar.MINUTE] = 0
         currentDatemil[Calendar.SECOND] = 0
         currentDatemil[Calendar.MILLISECOND] = 0

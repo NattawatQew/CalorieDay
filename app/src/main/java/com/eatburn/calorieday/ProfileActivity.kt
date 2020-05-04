@@ -37,7 +37,7 @@ class ProfileActivity : AppCompatActivity() {
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
             val users = firebaseAuth.currentUser
             if (users == null) {
-                startActivity(Intent(this@ProfileActivity, LoginActivity::class.java))
+                startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
                 finish()
             }
         }

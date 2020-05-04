@@ -166,7 +166,7 @@ class LunchActivity : AppCompatActivity() {
                 val df: DateFormat = SimpleDateFormat("EEE, d MMM yyyy, HH:mm")
                 val currentdate = df.format(Calendar.getInstance().time)
                 val  timestamp = Calendar.getInstance()
-                timestamp[Calendar.HOUR] = 0
+                timestamp[Calendar.HOUR_OF_DAY] = 0
                 timestamp[Calendar.MINUTE] = 0
                 timestamp[Calendar.SECOND] = 0
                 timestamp[Calendar.MILLISECOND] = 0
@@ -265,4 +265,9 @@ class LunchActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+//        startActivity(Intent(this@LunchActivity, HomeActivity::class.java))
+        finish()
+    }
 }

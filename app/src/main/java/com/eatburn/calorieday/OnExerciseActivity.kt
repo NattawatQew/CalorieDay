@@ -67,15 +67,19 @@ class OnExerciseActivity : AppCompatActivity() {
 
         ontrack_profileBtn.setOnClickListener {
             startActivity(Intent(this@OnExerciseActivity, ProfileActivity::class.java))
+            finish()
         }
         ontrack_mygoalBtn.setOnClickListener {
             startActivity(Intent(this@OnExerciseActivity, MyGoalActivity::class.java))
+            finish()
         }
         ontrack_addBtn.setOnClickListener {
             startActivity(Intent(this@OnExerciseActivity, AddOnActivity::class.java))
+            finish()
         }
         ontrack_homeBtn.setOnClickListener {
             startActivity(Intent(this@OnExerciseActivity, HomeActivity::class.java))
+            finish()
         }
     }
 
@@ -251,5 +255,6 @@ class OnExerciseActivity : AppCompatActivity() {
 
         mEntryList!!.adapter = firebaseRecyclerAdapter
     }
+
 
 }

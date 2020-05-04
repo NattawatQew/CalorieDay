@@ -75,15 +75,19 @@ class OnTrackActivity : AppCompatActivity() {
 
         ontrack_profileBtn.setOnClickListener {
             startActivity(Intent(this@OnTrackActivity, ProfileActivity::class.java))
+            finish()
         }
         ontrack_mygoalBtn.setOnClickListener {
             startActivity(Intent(this@OnTrackActivity, MyGoalActivity::class.java))
+            finish()
         }
         ontrack_addBtn.setOnClickListener {
             startActivity(Intent(this@OnTrackActivity, AddOnActivity::class.java))
+            finish()
         }
         ontrack_homeBtn.setOnClickListener {
             startActivity(Intent(this@OnTrackActivity, HomeActivity::class.java))
+            finish()
         }
     }
 
@@ -252,4 +256,5 @@ class OnTrackActivity : AppCompatActivity() {
             }
         })
     }
+
 }

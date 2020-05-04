@@ -1,12 +1,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
-    <item android:drawable="@color/colorVeryLightPurple" />
+    <item android:drawable="@color/colorLightPurple" />
     <item
-        android:width="100dp"
-        android:height="100dp"
+        android:width="500dp"
+        android:height="500dp"
         android:gravity="center">
         <bitmap
-            android:src="@drawable/loading_img"
-            android:gravity="center"
+            android:src="@drawable/care_calories_day"
+            android:gravity="fill"
             android:mipMap="true">
         </bitmap>
     </item>
